@@ -11,6 +11,8 @@ const percentCorrect = document.getElementById('percent-correct');
 const timeToComplete = document.getElementById('time-to-complete');
 // Add this line to the top of your JavaScript file to get the "Play Again" button element
 const playAgainBtn = document.getElementById('play-again-btn');
+// Add this line to the top of your JavaScript file to get the "Try Again" button element
+const tryAgainBtn = document.getElementById('try-again-btn');
 
 let startTime = null;
 let timerInterval = null;
@@ -46,6 +48,8 @@ stopBtn.addEventListener('click', () => {
     userInput.removeEventListener('input', calculatePercentage);
       // Show the "Play Again" button
   playAgainBtn.classList.remove('hidden');
+    // Show the "Try Again" button
+  tryAgainBtn.classList.remove('hidden');
 });
 
 
@@ -61,6 +65,20 @@ playAgainBtn.addEventListener('click', () => {
     statsSection.classList.add('hidden');
     playAgainBtn.classList.add('hidden');
     inputSection.classList.remove('hidden');
+  });
+
+// Add this event listener for the "Try Again" button
+tryAgainBtn.addEventListener('click', () => {
+    // Reset the user input and timer
+    userInput.value = '';
+    timer.textContent = '0:00';
+  
+    // Hide the stats section and "Try Again" button, show the timer section and "start" button
+    statsSection.classList.add('hidden');
+    tryAgainBtn.classList.add('hidden');
+    timerSection.classList.remove('hidden');
+    startBtn.classList.remove('hidden');
+    stopBtn.classList.add('hidden');
   });
 
 function updateTimer() {

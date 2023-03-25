@@ -43,4 +43,12 @@ body {
   .hidden {
     display: none;
   }
+
+  #last-page-btns {
+    display: flex;
+    /* Centered and space between */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
   
