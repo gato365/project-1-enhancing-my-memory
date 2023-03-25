@@ -1,3 +1,5 @@
+
+Add details to this list to create a better request to ChatGPT 
 ## Name of the project: Memorize
 
 ### Description of the project: Memorize is a website that allows you to memorize anything you want. 
