@@ -9,6 +9,8 @@ const timerSection = document.querySelector('.timer-section');
 const statsSection = document.querySelector('.stats-section');
 const percentCorrect = document.getElementById('percent-correct');
 const timeToComplete = document.getElementById('time-to-complete');
+// Add this line to the top of your JavaScript file to get the "Play Again" button element
+const playAgainBtn = document.getElementById('play-again-btn');
 
 let startTime = null;
 let timerInterval = null;
@@ -42,7 +44,24 @@ stopBtn.addEventListener('click', () => {
     stopBtn.classList.add('hidden');
     userInput.classList.add('hidden');
     userInput.removeEventListener('input', calculatePercentage);
+      // Show the "Play Again" button
+  playAgainBtn.classList.remove('hidden');
 });
+
+
+// Add this event listener for the "Play Again" button
+playAgainBtn.addEventListener('click', () => {
+    // Reset the user input, timer, and stats
+    userInput.value = '';
+    timer.textContent = '0:00';
+    percentCorrect.textContent = '';
+    timeToComplete.textContent = '';
+  
+    // Hide the stats section and "Play Again" button, show the input section
+    statsSection.classList.add('hidden');
+    playAgainBtn.classList.add('hidden');
+    inputSection.classList.remove('hidden');
+  });
 
 function updateTimer() {
 
