@@ -82,4 +82,11 @@ function calculatePercentage() {
 
     return percentage;
 }
-
+function updateTimeAndDate() {
+    const currentTimeDate = new Date();
+    const formattedTimeDate = currentTimeDate.toLocaleString();
+    document.getElementById('time-date').textContent = formattedTimeDate;
+  }
+  
+  updateTimeAndDate();
+  
