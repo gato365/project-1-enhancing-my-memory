@@ -8,14 +8,20 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 ### My Ideas based on what I want to enhance:
 
- - Prevent auto refresh
- - Display time and date
- - Display original text and entered text
- - Include asynchronus JavaScript
- - Use this for music chords and e numbers
- - Save scores in local storage
- - Create a score board
- - Save scores in a database
+#### Current Version:
+
+* [ ] Prevent auto refresh
+* [ ] Display time and date
+* [ ] Display original text and entered text
+* [ ] Include asynchronusfunctionality JavaScript
+* [ ] Use this for music chords and e numbers
+* [ ] Save scores in local storage
+* [ ] Create a score board
+
+
+ #### In a future version:
+
+* [ ] Save scores in a database
 
  ### ChatGPT's Questions:
 
@@ -55,3 +61,31 @@ Design
 
 What programming languages and technologies are you using for this project? :HTML, CSS, and JavaScript
 This version is only for me
+
+
+
+## Image of Image of Original Design & Function of App
+
+### Origial Idea Written
+
+<img src = "images/plan-0.jpg" width="35%" height="65%"> 
+
+### First Page
+
+<img src = "images/image_0_version_0.png" width="35%" height="35%"> 
+
+### Enter Original Text & Click Save Button
+
+<img src = "images/image_1_version_0.png" width="35%" height="35%">
+
+###  Click Start Button
+
+<img src = "images/image_2_version_0.png" width="35%" height="35%">
+
+### Enter Text & Click Stop Button
+
+<img src = "images/image_3_version_0.png" width="35%" height="35%">
+
+### Stats Bar
+
+<img src = "images/image_4_version_0.png" width="35%" height="35%">
