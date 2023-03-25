@@ -53,6 +53,7 @@ function updateTimer() {
     timer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
+
 function calculatePercentage() {
     const originalText = localStorage.getItem('memorizeText');
     const enteredText = userInput.value;
@@ -64,6 +65,21 @@ function calculatePercentage() {
         }
     }
 
-    const percentage = Math.floor((correctChars / originalText.length) * 100);
+    let percentage = Math.floor((correctChars / originalText.length) * 100);
+
+    // If the entered text is longer than the original text, take 10% off the percentage.
+    if (enteredText.length > originalText.length) {
+        percentage *= 0.9;
+        percentage = Math.floor(percentage); // Round down to the nearest integer after taking 10% off.
+    }
+
+    // Ensure the percentage stays within the range of 0 to 100.
+    if (percentage < 0) {
+        percentage = 0;
+    } else if (percentage > 100) {
+        percentage = 100;
+    }
+
     return percentage;
 }
+
