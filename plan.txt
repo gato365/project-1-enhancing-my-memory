@@ -1,17 +1,17 @@
 
-Add details to this list to create a better request to ChatGPT 
 ## Name of the project: Memorize
 
 ### Description of the project: Memorize is a website that allows you to memorize anything you want. 
 0) A title name: Testing Eman's memory, a textbox, and save button are the only things on the screen
 1) The *User* **enters** the string that needs to be memorized in textbox
 2) The *User* **clicks** save button, when saved button is clicked:
-    - The textbox and save button disappear
+    - The textbox and save button disappear, entered text is stored in local storage
     - Two new buttons appear that say: "start" and "stop"
     - A timer is at 0:00
 3) Once the *User* **clicks** the "start" button:
     - The user enters the what they remember in textbox
     - The timer begins
+    - The website is calculating the % correct as the *User* is typing
 4) The *User* **clicks** the "stop" button when the *User* is complete then a stats bar shows up that displays:
     - % correct
     - Time to complete
@@ -20,10 +20,9 @@ Design
     - Everything is center on this page
 
 
+What programming languages and technologies are you using for this project? :HTML, CSS, and JavaScript
+This version is only for me
 
 
 
-Future Design & Functionality Ideas:
- 
- - Display time and date
- - Use this for music chords and e numbers
+
