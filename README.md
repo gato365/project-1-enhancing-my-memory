@@ -8,8 +8,14 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 ### My Ideas based on what I want to enhance:
 
+ - Prevent auto refresh
  - Display time and date
+ - Display original text and entered text
+ - Include asynchronus JavaScript
  - Use this for music chords and e numbers
+ - Save scores in local storage
+ - Create a score board
+ - Save scores in a database
 
  ### ChatGPT's Questions:
 
