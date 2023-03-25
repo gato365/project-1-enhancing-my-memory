@@ -22,6 +22,7 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
  #### In a future version:
 
 * [ ] Save scores in a database
+* [ ] Create a visualization of past scores
 
  ### ChatGPT's Questions:
 
