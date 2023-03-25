@@ -16,16 +16,18 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 * [X] Play again button on last page
 * [X] Do not store text in web browser
 * [X] Why-No  asynchronusfunctionality JavaScript
-* [ ] Use this for music chords and e numbers
-* [ ] Save scores in local storage
-* [ ] Make colors more appealing
-* [ ] Display original text and entered text
+* [X] Make colors more appealing
+* [X] Start the game issue, things needed to be hidden again
+
 
  #### In a future version:
 
 ##### Level 1:
 
+* [ ] Display original text and entered text
+* [ ] Save scores in local storage
 * [ ] Show Text as it is being entered
+* [ ] Use this for music chords and e numbers
 
 ##### Level 2:
 

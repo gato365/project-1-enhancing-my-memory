@@ -71,6 +71,8 @@ playAgainBtn.addEventListener('click', () => {
     statsSection.classList.add('hidden');
     playAgainBtn.classList.add('hidden');
     inputSection.classList.remove('hidden');
+    timerSection.classList.add('hidden');
+    memoryText.value = '';
   });
 
 // Add this event listener for the "Try Again" button
