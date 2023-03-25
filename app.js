@@ -13,19 +13,22 @@ const timeToComplete = document.getElementById('time-to-complete');
 const playAgainBtn = document.getElementById('play-again-btn');
 // Add this line to the top of your JavaScript file to get the "Try Again" button element
 const tryAgainBtn = document.getElementById('try-again-btn');
+// Add these lines at the top of your JavaScript file to get the new elements
+const showTextsBtn = document.getElementById('show-texts-btn');
+const originalTextDisplay = document.getElementById('original-text');
+const enteredTextDisplay = document.getElementById('entered-text');
+
 
 let startTime = null;
 let timerInterval = null;
 
 saveBtn.addEventListener('click', () => {
-    event.preventDefault();
     localStorage.setItem('memorizeText', memoryText.value);
     inputSection.classList.add('hidden');
     timerSection.classList.remove('hidden');
 });
 
 startBtn.addEventListener('click', () => {
-    event.preventDefault();
     startTime = new Date();
     timerInterval = setInterval(updateTimer, 1000);
     startBtn.classList.add('hidden');
@@ -33,10 +36,13 @@ startBtn.addEventListener('click', () => {
     userInput.classList.remove('hidden');
     userInput.focus();
     userInput.addEventListener('input', calculatePercentage);
+
+        // Hide the text containers when the user starts typing
+        originalTextDisplay.classList.add('hidden');
+        enteredTextDisplay.classList.add('hidden');
 });
 
 stopBtn.addEventListener('click', () => {
-    event.preventDefault();
     clearInterval(timerInterval);
     const totalTime = Math.floor((new Date() - startTime) / 1000);
     const percentage = calculatePercentage();
@@ -46,10 +52,10 @@ stopBtn.addEventListener('click', () => {
     stopBtn.classList.add('hidden');
     userInput.classList.add('hidden');
     userInput.removeEventListener('input', calculatePercentage);
-      // Show the "Play Again" button
-  playAgainBtn.classList.remove('hidden');
+    // Show the "Play Again" button
+    playAgainBtn.classList.remove('hidden');
     // Show the "Try Again" button
-  tryAgainBtn.classList.remove('hidden');
+    tryAgainBtn.classList.remove('hidden');
 });
 
 
@@ -79,6 +85,19 @@ tryAgainBtn.addEventListener('click', () => {
     timerSection.classList.remove('hidden');
     startBtn.classList.remove('hidden');
     stopBtn.classList.add('hidden');
+  });
+
+
+// Add this event listener for the "Show Original and Entered Texts" button
+showTextsBtn.addEventListener('click', () => {
+    const originalText = localStorage.getItem('memorizeText');
+    const enteredText = userInput.value;
+  
+    originalTextDisplay.textContent = `Original Text: ${originalText}`;
+    enteredTextDisplay.textContent = `Entered Text: ${enteredText}`;
+  
+    originalTextDisplay.classList.toggle('hidden');
+    enteredTextDisplay.classList.toggle('hidden');
   });
 
 function updateTimer() {

@@ -13,18 +13,25 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 * [X] Prevent auto refresh
 * [X] If string is too long take 10% off if 0 keep at 0
 * [X] Display time and date
-* [ ] Play again button on last page
-* [ ] Display original text and entered text
-* [ ] Include asynchronusfunctionality JavaScript
+* [X] Play again button on last page
+* [X] Do not store text in web browser
+* [X] Why-No  asynchronusfunctionality JavaScript
 * [ ] Use this for music chords and e numbers
 * [ ] Save scores in local storage
-* [ ] Create a score board
 * [ ] Make colors more appealing
-
+* [ ] Display original text and entered text
 
  #### In a future version:
 
+##### Level 1:
+
+* [ ] Show Text as it is being entered
+
+##### Level 2:
+
+* [ ] Create a score board
 * [ ] Save scores in a database
+* [ ] Perform unit testing
 * [ ] Create a visualization of past scores
 
  ### ChatGPT's Questions:
