@@ -11,6 +11,7 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 #### Current Version:
 
 * [ ] Prevent auto refresh
+* [ ] If string is too long take 25% off if 0 keep at 0
 * [ ] Display time and date
 * [ ] Display original text and entered text
 * [ ] Include asynchronusfunctionality JavaScript
