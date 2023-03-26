@@ -48,3 +48,9 @@ button:hover {
 .hidden {
   display: none;
 }
+
+select {
+font-size: 1.2rem;
+padding: 8px;
+margin-right: 10px;
+}

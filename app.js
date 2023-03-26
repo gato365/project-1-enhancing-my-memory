@@ -43,20 +43,22 @@ function updateTimeAndDate() {
     document.getElementById('time-date').textContent = formattedTimeDate;
 }
 
+let e_data;
 async function loadJSON(url) {
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const data = await response.json();
-      console.log(data);
+      e_data = await response.json();
+    console.log(e_data);
     } catch (error) {
       console.error('Error fetching JSON:', error);
     }
   }
 
-  loadJSON('your-json-file-url.json');
+  loadJSON('eman.json');
+//   console.log(e_data)
 
 const memoryText = document.getElementById('memory-text');
 const saveBtn = document.getElementById('save-btn');
@@ -79,7 +81,9 @@ const textsContainer = document.getElementById('texts-container');
 const originalTextDisplay = document.getElementById('original-text');
 const enteredTextDisplay = document.getElementById('entered-text');
 const currentEnteredText = document.getElementById('current-entered');
-
+// number and letter 
+const numbers = document.getElementById('numbers');
+const letters = document.getElementById('letters');
 
 
 let startTime = null;

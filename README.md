@@ -27,6 +27,8 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 ##### Level 1:
 
 * [ ] Use this for music chords and e numbers Process
+* [ ] Filter word numbers and letters and display it on the screen
+* [ ] Display selected groups and sets
 
 ##### Level 2:
 
