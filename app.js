@@ -46,18 +46,18 @@ function updateTimeAndDate() {
 let e_data;
 async function loadJSON(url) {
     try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      e_data = await response.json();
-    console.log(e_data);
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        e_data = await response.json();
+        console.log(e_data);
     } catch (error) {
-      console.error('Error fetching JSON:', error);
+        console.error('Error fetching JSON:', error);
     }
-  }
+}
 
-  loadJSON('eman.json');
+loadJSON('eman.json');
 //   console.log(e_data)
 
 const memoryText = document.getElementById('memory-text');
@@ -66,7 +66,8 @@ const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const userInput = document.getElementById('user-input');
 const timer = document.getElementById('timer');
-const inputSection = document.querySelector('.input-section');
+const inputSectionGroup = document.querySelector('.input-section-group');
+const inputSectionNumbers = document.querySelector('.input-section-numbers');
 const timerSection = document.querySelector('.timer-section');
 const statsSection = document.querySelector('.stats-section');
 const percentCorrect = document.getElementById('percent-correct');
@@ -82,20 +83,35 @@ const originalTextDisplay = document.getElementById('original-text');
 const enteredTextDisplay = document.getElementById('entered-text');
 const currentEnteredText = document.getElementById('current-entered');
 // number and letter 
-const numbers = document.getElementById('numbers');
 const letters = document.getElementById('letters');
+const numbers = document.getElementById('numbers');
 
+const labelLetters = document.getElementById('labelLetters');
+const continueBtn = document.getElementById('continue-btn');
 
 let startTime = null;
 let timerInterval = null;
 
+
 saveBtn.addEventListener('click', () => {
     localStorage.setItem('memorizeText', memoryText.value);
-    inputSection.classList.add('hidden');
+    localStorage.setItem('selectedLetters', letters.value);
+    localStorage.setItem('selectedNumbers', numbers.value);
+    inputSectionGroup.classList.add('hidden');
     timerSection.classList.remove('hidden');
+    inputSectionNumbers.classList.add('hidden');
+
+
 });
 
+continueBtn.addEventListener('click', () => {
+    startTime = new Date();
 
+    inputSectionGroup.classList.add('hidden');
+    inputSectionNumbers.classList.remove('hidden');
+
+
+});
 
 
 
@@ -110,18 +126,18 @@ startBtn.addEventListener('click', () => {
     userInput.classList.remove('hidden');
     userInput.focus();
     userInput.addEventListener('input', calculatePercentage);
-  
+
     // Hide the text containers when the user starts typing
     textsContainer.classList.add('hidden');
     originalTextDisplay.classList.add('hidden');
     enteredTextDisplay.classList.add('hidden');
-  
+
     // Add event listener to update currentEnteredText as the user types
     userInput.addEventListener('input', () => {
-      currentEnteredText.classList.remove('hidden');
-      currentEnteredText.textContent = `Current Entered Text: ${userInput.value}`;
+        currentEnteredText.classList.remove('hidden');
+        currentEnteredText.textContent = `Current Entered Text: ${userInput.value}`;
     });
-  });
+});
 
 stopBtn.addEventListener('click', () => {
     clearInterval(timerInterval);
@@ -148,7 +164,9 @@ stopBtn.addEventListener('click', () => {
         percentage: percentage,
         time: totalTime,
         memorizeText: localStorage.getItem('memorizeText'),
-        enteredText: userInput.value
+        enteredText: userInput.value,
+        selectedLetters: localStorage.getItem('selectedLetters'),
+        selectedNumbers: localStorage.getItem('selectedNumbers'),
     };
 
 
@@ -170,7 +188,7 @@ playAgainBtn.addEventListener('click', () => {
     statsSection.classList.add('hidden');
     playAgainBtn.classList.add('hidden');
     tryAgainBtn.classList.add('hidden');
-    inputSection.classList.remove('hidden');
+    inputSectionGroup.classList.remove('hidden');
     timerSection.classList.add('hidden');
     memoryText.value = '';
     startBtn.classList.remove('hidden');
@@ -196,7 +214,7 @@ tryAgainBtn.addEventListener('click', () => {
 showTextsBtn.addEventListener('click', () => {
     const originalText = localStorage.getItem('memorizeText');
     const enteredText = userInput.value;
-    
+
 
     originalTextDisplay.textContent = `Original Text: ${originalText}`;
     enteredTextDisplay.textContent = `Entered Text: ${enteredText}`;
