@@ -16,7 +16,7 @@
     <div id="time-date"></div>
     <div class="input-section-group">
 
-      <input type="text" id="memory-text" placeholder="Enter the text you want to memorize" autocomplete="off">
+      <!-- <input type="text" id="memory-text" placeholder="Enter the text you want to memorize" autocomplete="off"> -->
 
 
       <label for="letters" id="label-letters"> Select a groups</label>
@@ -35,8 +35,20 @@
     </div>
     <div class="input-section-numbers hidden">
 
-      <label for="numbers" id="label-numbers"> Select a number</label>
-      <select id="numbers">
+
+      <label for="num-of-lines" id="num-of-liness"> Select a number</label>
+      <select id="num-of-lines">
+        <option value="many">All of the Sets</option>
+        <option value="1">Just 1 Set</option>
+        
+      </select>
+      <!-- Option for 1 gives numbers -->
+      <br>
+
+
+
+      <label for="numbers" id="label-numbers" class="hidden"> Select a set</label>
+      <select id="numbers" class="hidden">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -52,6 +64,7 @@
       <input type="text" id="user-input" placeholder="Enter what you remember" class="hidden" autocomplete="off">
       <div id="current-entered" class="hidden"></div>
       <button id="start-btn">Start</button>
+      <div id = "selected-info" class="hidden"></div>
       <button id="stop-btn" class="hidden">Stop</button>
     </div>
     <div class="stats-section hidden">

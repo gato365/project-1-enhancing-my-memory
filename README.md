@@ -19,14 +19,14 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 ## Today
 * [ ] Use this for e numbers Process for only 40 e numbers (1 set) - Multiple Steps
 
-    - [ ] The *User* **selects** a group from a dropdown menu with options {A-F}.
-    - [ ] The *User* **clicks** a "Begin" button.
-    - [ ] The *User* **selects** either "1 line" or "entire group" from a dropdown menu, with "1 line" as the default option.
-    - [ ] If the *User* **selects** "entire group", they will be prompted to select a set from another dropdown menu with options 1-5.
-    - [ ] The *User* **clicks** a "Let's Start" button to proceed.
-    - [ ] The *User* is then presented with:
-    - [ ] A text display above the input text box that shows the selected group and set, formatted as "Group: [selected group], Set: [selected set]".
-    - [ ] An input text box for the *User* to enter the text corresponding to the selected group and set.
+    - [X] The *User* **selects** a letters from a dropdown menu with options {A-F}.
+    - [X] The *User* **clicks** a "Continue" button.
+    - [X] The *User* **selects** either "Just 1 Set" or "All of the Sets" from a dropdown menu, with "Just 1 Set" as the default option.
+    - [X] If the *User* **selects** "Just 1 Set", they will be prompted to select a set from another dropdown menu with options 1-5.
+    - [X] The *User* **clicks** a "Let's Start" button to proceed.
+    - [X] The *User* is then presented with:
+    - [X] A text display above the input text box that shows the selected group and set, formatted as "Group: [selected group], Set: [selected set]".
+    - [X] An input text box for the *User* to enter the text corresponding to the selected group and set.
 
 
 
