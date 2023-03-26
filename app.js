@@ -1,3 +1,63 @@
+function updateTimer() {
+
+    const currentTime = new Date();
+    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+    const minutes = Math.floor(elapsedTime / 60);
+    const seconds = elapsedTime % 60;
+    timer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+function calculatePercentage() {
+    const originalText = localStorage.getItem('memorizeText');
+    const enteredText = userInput.value;
+    let correctChars = 0;
+
+    for (let i = 0; i < enteredText.length && i < originalText.length; i++) {
+        if (enteredText[i] === originalText[i]) {
+            correctChars++;
+        }
+    }
+
+    let percentage = Math.floor((correctChars / originalText.length) * 100);
+
+    // If the entered text is longer than the original text, take 10% off the percentage.
+    if (enteredText.length > originalText.length) {
+        percentage = percentage - 0.05 * (enteredText.length - originalText.length);
+        // percentage = Math.floor(percentage); // Round down to the nearest integer after taking 10% off.
+    }
+
+    // Ensure the percentage stays within the range of 0 to 100.
+    if (percentage < 0) {
+        percentage = 0;
+    } else if (percentage > 100) {
+        percentage = 100;
+    }
+
+
+
+    // Return the percentage
+    return percentage;
+}
+function updateTimeAndDate() {
+    const currentTimeDate = new Date();
+    const formattedTimeDate = currentTimeDate.toLocaleString();
+    document.getElementById('time-date').textContent = formattedTimeDate;
+}
+
+async function loadJSON(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching JSON:', error);
+    }
+  }
+
+  loadJSON('your-json-file-url.json');
+
 const memoryText = document.getElementById('memory-text');
 const saveBtn = document.getElementById('save-btn');
 const startBtn = document.getElementById('start-btn');
@@ -142,52 +202,6 @@ showTextsBtn.addEventListener('click', () => {
     enteredTextDisplay.classList.remove('hidden');
 });
 
-function updateTimer() {
-
-    const currentTime = new Date();
-    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-    const minutes = Math.floor(elapsedTime / 60);
-    const seconds = elapsedTime % 60;
-    timer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
-
-
-function calculatePercentage() {
-    const originalText = localStorage.getItem('memorizeText');
-    const enteredText = userInput.value;
-    let correctChars = 0;
-
-    for (let i = 0; i < enteredText.length && i < originalText.length; i++) {
-        if (enteredText[i] === originalText[i]) {
-            correctChars++;
-        }
-    }
-
-    let percentage = Math.floor((correctChars / originalText.length) * 100);
-
-    // If the entered text is longer than the original text, take 10% off the percentage.
-    if (enteredText.length > originalText.length) {
-        percentage = percentage - 0.05 * (enteredText.length - originalText.length);
-        // percentage = Math.floor(percentage); // Round down to the nearest integer after taking 10% off.
-    }
-
-    // Ensure the percentage stays within the range of 0 to 100.
-    if (percentage < 0) {
-        percentage = 0;
-    } else if (percentage > 100) {
-        percentage = 100;
-    }
-
-
-
-    // Return the percentage
-    return percentage;
-}
-function updateTimeAndDate() {
-    const currentTimeDate = new Date();
-    const formattedTimeDate = currentTimeDate.toLocaleString();
-    document.getElementById('time-date').textContent = formattedTimeDate;
-}
 
 updateTimeAndDate();
 
