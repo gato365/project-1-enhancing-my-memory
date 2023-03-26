@@ -31,6 +31,8 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 ##### Level 2:
 
+* [ ] Give the ability to set a time goal
+* [ ] If goal is not met, take points off
 * [ ] Create a score board
 * [ ] Save scores in a database
 * [ ] Perform unit testing

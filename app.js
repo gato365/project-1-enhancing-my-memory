@@ -70,9 +70,11 @@ playAgainBtn.addEventListener('click', () => {
     // Hide the stats section and "Play Again" button, show the input section
     statsSection.classList.add('hidden');
     playAgainBtn.classList.add('hidden');
+    tryAgainBtn.classList.add('hidden');
     inputSection.classList.remove('hidden');
     timerSection.classList.add('hidden');
     memoryText.value = '';
+    startBtn.classList.remove('hidden');
   });
 
 // Add this event listener for the "Try Again" button
@@ -127,8 +129,8 @@ function calculatePercentage() {
 
     // If the entered text is longer than the original text, take 10% off the percentage.
     if (enteredText.length > originalText.length) {
-        percentage *= 0.9;
-        percentage = Math.floor(percentage); // Round down to the nearest integer after taking 10% off.
+        percentage  =percentage - 0.01*(enteredText.length - originalText.length);
+        // percentage = Math.floor(percentage); // Round down to the nearest integer after taking 10% off.
     }
 
     // Ensure the percentage stays within the range of 0 to 100.

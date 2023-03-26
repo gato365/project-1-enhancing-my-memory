@@ -36,7 +36,7 @@ button {
   cursor: pointer;
 }
 
-.button-group {
+.timer-section .button-group {
   display: flex;
   justify-content: center;
 }
