@@ -15,8 +15,11 @@ const playAgainBtn = document.getElementById('play-again-btn');
 const tryAgainBtn = document.getElementById('try-again-btn');
 // Add these lines at the top of your JavaScript file to get the new elements
 const showTextsBtn = document.getElementById('show-texts-btn');
+const textsContainer = document.getElementById('texts-container');
 const originalTextDisplay = document.getElementById('original-text');
 const enteredTextDisplay = document.getElementById('entered-text');
+const currentEnteredText = document.getElementById('current-entered');
+
 
 
 let startTime = null;
@@ -28,6 +31,13 @@ saveBtn.addEventListener('click', () => {
     timerSection.classList.remove('hidden');
 });
 
+
+
+
+
+
+
+
 startBtn.addEventListener('click', () => {
     startTime = new Date();
     timerInterval = setInterval(updateTimer, 1000);
@@ -36,11 +46,18 @@ startBtn.addEventListener('click', () => {
     userInput.classList.remove('hidden');
     userInput.focus();
     userInput.addEventListener('input', calculatePercentage);
-
-        // Hide the text containers when the user starts typing
-        originalTextDisplay.classList.add('hidden');
-        enteredTextDisplay.classList.add('hidden');
-});
+  
+    // Hide the text containers when the user starts typing
+    textsContainer.classList.add('hidden');
+    originalTextDisplay.classList.add('hidden');
+    enteredTextDisplay.classList.add('hidden');
+  
+    // Add event listener to update currentEnteredText as the user types
+    userInput.addEventListener('input', () => {
+      currentEnteredText.classList.remove('hidden');
+      currentEnteredText.textContent = `Current Entered Text: ${userInput.value}`;
+    });
+  });
 
 stopBtn.addEventListener('click', () => {
     clearInterval(timerInterval);
@@ -52,10 +69,27 @@ stopBtn.addEventListener('click', () => {
     stopBtn.classList.add('hidden');
     userInput.classList.add('hidden');
     userInput.removeEventListener('input', calculatePercentage);
+    currentEnteredText.textContent = '';
     // Show the "Play Again" button
     playAgainBtn.classList.remove('hidden');
     // Show the "Try Again" button
     tryAgainBtn.classList.remove('hidden');
+    // Show the "Show Original and Entered Texts" button
+    showTextsBtn.classList.remove('hidden');
+
+
+
+    // Save the percentage to localStorage
+    const currentAttemptData = {
+        percentage: percentage,
+        time: totalTime,
+        memorizeText: localStorage.getItem('memorizeText'),
+        enteredText: userInput.value
+    };
+
+
+    localStorage.setItem('currentAttemptData', JSON.stringify(currentAttemptData));
+
 });
 
 
@@ -66,7 +100,8 @@ playAgainBtn.addEventListener('click', () => {
     timer.textContent = '0:00';
     percentCorrect.textContent = '';
     timeToComplete.textContent = '';
-  
+    currentEnteredText.textContent = '';
+
     // Hide the stats section and "Play Again" button, show the input section
     statsSection.classList.add('hidden');
     playAgainBtn.classList.add('hidden');
@@ -75,34 +110,37 @@ playAgainBtn.addEventListener('click', () => {
     timerSection.classList.add('hidden');
     memoryText.value = '';
     startBtn.classList.remove('hidden');
-  });
+});
 
 // Add this event listener for the "Try Again" button
 tryAgainBtn.addEventListener('click', () => {
     // Reset the user input and timer
     userInput.value = '';
     timer.textContent = '0:00';
-  
+    currentEnteredText.textContent = '';
+
     // Hide the stats section and "Try Again" button, show the timer section and "start" button
     statsSection.classList.add('hidden');
     tryAgainBtn.classList.add('hidden');
     timerSection.classList.remove('hidden');
     startBtn.classList.remove('hidden');
     stopBtn.classList.add('hidden');
-  });
+});
 
 
 // Add this event listener for the "Show Original and Entered Texts" button
 showTextsBtn.addEventListener('click', () => {
     const originalText = localStorage.getItem('memorizeText');
     const enteredText = userInput.value;
-  
+    
+
     originalTextDisplay.textContent = `Original Text: ${originalText}`;
     enteredTextDisplay.textContent = `Entered Text: ${enteredText}`;
-  
-    originalTextDisplay.classList.toggle('hidden');
-    enteredTextDisplay.classList.toggle('hidden');
-  });
+
+    textsContainer.classList.remove('hidden');
+    originalTextDisplay.classList.remove('hidden');
+    enteredTextDisplay.classList.remove('hidden');
+});
 
 function updateTimer() {
 
@@ -129,7 +167,7 @@ function calculatePercentage() {
 
     // If the entered text is longer than the original text, take 10% off the percentage.
     if (enteredText.length > originalText.length) {
-        percentage  =percentage - 0.01*(enteredText.length - originalText.length);
+        percentage = percentage - 0.05 * (enteredText.length - originalText.length);
         // percentage = Math.floor(percentage); // Round down to the nearest integer after taking 10% off.
     }
 
@@ -140,13 +178,16 @@ function calculatePercentage() {
         percentage = 100;
     }
 
+
+
+    // Return the percentage
     return percentage;
 }
 function updateTimeAndDate() {
     const currentTimeDate = new Date();
     const formattedTimeDate = currentTimeDate.toLocaleString();
     document.getElementById('time-date').textContent = formattedTimeDate;
-  }
-  
-  updateTimeAndDate();
-  
+}
+
+updateTimeAndDate();
+

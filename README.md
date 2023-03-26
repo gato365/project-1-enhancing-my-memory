@@ -18,16 +18,15 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 * [X] Why-No  asynchronusfunctionality JavaScript
 * [X] Make colors more appealing
 * [X] Start the game issue, things needed to be hidden again
-
+* [X] Display original text and entered text
+* [X] Save scores in local storage
+* [X] Show Text as it is being entered
 
  #### In a future version:
 
 ##### Level 1:
 
-* [ ] Display original text and entered text
-* [ ] Save scores in local storage
-* [ ] Show Text as it is being entered
-* [ ] Use this for music chords and e numbers
+* [ ] Use this for music chords and e numbers Process
 
 ##### Level 2:
 
