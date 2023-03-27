@@ -17,7 +17,7 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 ##### Level 1:
 
 ## Today
-* [ ] Use this for e numbers Process for only 40 e numbers (1 set) - Multiple Steps
+* [X] Use this for e numbers Process for only 40 e numbers (1 set) - Multiple Steps
 
     - [X] The *User* **selects** a letters from a dropdown menu with options {A-F}.
     - [X] The *User* **clicks** a "Continue" button.
@@ -30,9 +30,9 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 
 
-
-* [ ] Filter word numbers and letters and display it on the screen
-* [ ] Display selected groups and sets
+* [ ] Save scores in a database
+* [ ] (cencelled, no need) ~~Filter word numbers and letters and display it on the screen~~ 
+* [ ] (cencelled, no need)~~Display selected groups and sets~~
 * [ ] Center all Text * use bootstrap to make everything look nice
 * [ ] Give the ability to set a time goal
 * [ ] If goal is not met, take points off
@@ -41,7 +41,7 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 ## Later
 * [ ] Use this for e numbers Process for an entire group (A-F)
-* [ ] Save scores in a database
+
 * [ ] Perform unit testing
 * [ ] Create a visualization of past scores
 

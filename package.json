@@ -1,0 +1,28 @@
+{
+  "name": "project-1-enhancing-my-memory",
+  "version": "1.0.0",
+  "description": "Purpose: I am in the process of becoming better developer, computer scientist, and data scientist. I am using this project to my ability to organize my thoughts and ideas. I am also using this project to practice my skills in writing and presenting my ideas to ChatGPT and other things.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gato365/project-1-enhancing-my-memory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gato365/project-1-enhancing-my-memory/issues"
+  },
+  "homepage": "https://github.com/gato365/project-1-enhancing-my-memory#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.3",
+    "nodemon": "^2.0.22"
+  }
+}
