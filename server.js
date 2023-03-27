@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
+
 const bodyParser = require('body-parser');
 const db = require('./config/connection');
 const routes = require('./routes');
@@ -11,7 +11,15 @@ const app = express();
 app.use(bodyParser.json());
 
 
-// Save percentage,time, entered text selected Letters, selectedNumbers, currentLine
+// Save date, percentage,time, entered text selected Letters, selectedNumbers, currentLine
+
+app.post('/save-data', async (req, res) => {
+
+    const { date, percentage, time, enteredText, selectedLetters, selectedNumbers, currentLine } = req.body;
+    const score = new Score({ date, percentage, time, enteredText, selectedLetters, selectedNumbers, currentLine });
+    await score.save();
+    res.send(score);
+});
 
 
 // Express middleware
