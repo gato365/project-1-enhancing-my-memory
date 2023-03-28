@@ -53,7 +53,8 @@ project-1-enhancing-my-memory/
 ├── node_modules/
 ├── public/
 │   ├── index.html
-│   ├── app.js 
+│   ├── app.js
+│   ├── eman.json 
 │   └── style.css 
 ├── server/
 │   ├── models/

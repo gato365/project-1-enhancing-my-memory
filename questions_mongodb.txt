@@ -186,3 +186,28 @@ Tell me how to set up each file under the following directories and files
 
 Directory - config
 
+
+Q. Do I need to run mongod in the terminal to get Mongo data base running?
+
+Yes, you need to run the mongod command in your terminal in order to start the MongoDB database server.
+
+The mongod command starts the MongoDB daemon process, which listens for client connections and manages the data files for the database. Once the mongod command is running, you can connect to the MongoDB server using a MongoDB client such as the mongo shell or MongoDB Compass.
+
+It's important to note that the mongod command should be run in its own terminal window or tab, as it will continue running until it is explicitly stopped or terminated. You should not close the terminal window or tab where mongod is running, as this will also terminate the database server process.
+
+In some cases, you may need to specify additional options or configuration settings when starting the mongod process, such as specifying a custom data directory or enabling authentication. You can consult the MongoDB documentation or seek additional help to learn more about these options.
+
+Q. How do I start up my server so that my mongodb data base is created?
+To start your server and create the MongoDB database, you need to do the following:
+
+Start the MongoDB server by running the mongod command in a terminal window or tab. This will start the MongoDB daemon process and listen for client connections.
+
+In your Node.js application, establish a connection to the MongoDB database using a MongoDB driver or library such as Mongoose. This typically involves creating a new instance of the driver or library and passing in the connection string and any necessary options.
+
+Define your data model using a schema or class, as shown in our previous examples. This will define the structure and behavior of the data that you will be storing in the MongoDB database.
+
+In your Node.js application, create a new instance of the data model and save it to the database. This typically involves calling a method or function provided by the MongoDB driver or library to create and save a new document in the database.
+
+Test your server and database by starting your Node.js application and making requests to it using a web browser or other client. You should be able to retrieve data from the database and display it in your UI, or create new data and save it to the database.
+
+It's important to note that the specific steps for starting your server and creating the MongoDB database may vary depending on the specifics of your application and the MongoDB driver or library you are using. You should consult the documentation and resources provided by your chosen driver or library for more information on how to establish a connection and interact with the MongoDB database.

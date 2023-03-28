@@ -91,6 +91,7 @@ const playAgainBtn = document.getElementById('play-again-btn');
 const tryAgainBtn = document.getElementById('try-again-btn');
 // Add these lines at the top of your JavaScript file to get the new elements
 const showTextsBtn = document.getElementById('show-texts-btn');
+
 const textsContainer = document.getElementById('texts-container');
 const originalTextDisplay = document.getElementById('original-text');
 const enteredTextDisplay = document.getElementById('entered-text');
@@ -188,8 +189,10 @@ stopBtn.addEventListener('click', async () => {
     statsSection.classList.remove('hidden');
     stopBtn.classList.add('hidden');
     userInput.classList.add('hidden');
-    userInput.removeEventListener('input', calculatePercentageCorrect());
+    // userInput.removeEventListener('input', calculatePercentageCorrect());
+    userInput.removeEventListener('input', calculatePercentageCorrect); // Remove the parentheses from the function reference
 
+    
 
     // currentEnteredText.textContent = '';
     // Show the "Play Again" button
@@ -215,7 +218,23 @@ stopBtn.addEventListener('click', async () => {
 
     localStorage.setItem('currentAttemptData', JSON.stringify(currentAttemptData));
 
+
+
+    const response = await fetch('/api/scoreRoutes/scores', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(currentAttemptData)
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+
 });
+
+
 
 
 // Add this event listener for the "Play Again" button
