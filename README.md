@@ -64,7 +64,7 @@ project-1-enhancing-my-memory/
 │   ├── routes/
 │   │   └── api.js
 |   |        └── index.js
-|   |        └── score.js
+|   |        └── scoreRoutes.js
 │   │   └── index.js
 │   ├── server.js
 │   └── connection/
