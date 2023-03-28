@@ -31,17 +31,17 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 
 * [ ] Save scores in a database
-* [ ] (cencelled, no need) ~~Filter word numbers and letters and display it on the screen~~ 
-* [ ] (cencelled, no need)~~Display selected groups and sets~~
 * [ ] Center all Text * use bootstrap to make everything look nice
+    - [ ] Look at quiz project to make thisngs look nice
 * [ ] Give the ability to set a time goal
 * [ ] If goal is not met, take points off
-* [ ] Create a score board
+* [ ] Create a score board (show best times and scores for specific groups and sets)
+* [ ] Display in red what is wrong with my answer versus what the correct answer is
+
 
 
 ## Later
 * [ ] Use this for e numbers Process for an entire group (A-F)
-
 * [ ] Perform unit testing
 * [ ] Create a visualization of past scores
 
