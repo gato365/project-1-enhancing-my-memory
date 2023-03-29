@@ -29,7 +29,7 @@ const scoresSchema = new Schema(
             required: true,
         },
         currentLine: {
-            type: Number,
+            type: String,
             required: true,
         },
         // This is the reference to the user that created this score

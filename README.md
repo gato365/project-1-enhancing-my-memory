@@ -27,10 +27,9 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
     - [X] The *User* is then presented with:
     - [X] A text display above the input text box that shows the selected group and set, formatted as "Group: [selected group], Set: [selected set]".
     - [X] An input text box for the *User* to enter the text corresponding to the selected group and set.
+* [X] Save scores in a database
 
 
-
-* [ ] Save scores in a database
 * [ ] Center all Text * use bootstrap to make everything look nice
     - [ ] Look at quiz project to make thisngs look nice
 * [ ] Give the ability to set a time goal

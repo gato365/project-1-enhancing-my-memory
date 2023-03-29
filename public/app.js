@@ -220,7 +220,7 @@ stopBtn.addEventListener('click', async () => {
 
 
 
-    const response = await fetch('/api/scoreRoutes/scores', {
+    const response = await fetch('/api/scores', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
