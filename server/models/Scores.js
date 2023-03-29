@@ -2,7 +2,7 @@ const { Schema, Types, model } = require('mongoose');
 
 
 // Save date, percentage,time, entered text selected Letters, selectedNumbers, currentLine
-const scoreSchema = new Schema(
+const scoresSchema = new Schema(
     {
         date: {
             type: Date,
@@ -42,8 +42,9 @@ const scoreSchema = new Schema(
     }
 );
 
+const Scores = model('Scores', scoresSchema);
 
-module.exports = model('Score', scoreSchema);
+module.exports = Scores;
 
 
 

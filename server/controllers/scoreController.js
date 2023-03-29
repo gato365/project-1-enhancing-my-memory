@@ -1,24 +1,22 @@
-const { Score } = require('../models');
+const  Scores  = require('../models/Scores');
 
 module.exports = {
     // POST /scores
     async createScore(req, res) {
-        const { date, percentage, time, enteredText, selectedLetters, selectedNumbers, currentLine } = req.body;
-
-        // You can add input validation here if necessary
-
         try {
-            const score = new Score({ date, percentage, time, enteredText, selectedLetters, selectedNumbers, currentLine });
-            await score.save();
+            const score = await Scores.create(req.body);
             res.json(score);
+
+
         } catch (err) {
-            res.status(422).json(err);
+            console.error('Error:', err);
+            res.status(500).json(err);
         }
     },
-
+ 
     // GET /scores
     getScores(req, res) {
-        Score.find(req.query)
+        Scores.find(req.query)
             .then(scores => res.json(scores))
             .catch(err => res.status(422).json(err));
     },
@@ -30,7 +28,7 @@ module.exports = {
         // You can add input validation here if necessary
 
         try {
-            const score = await Score.findById(id);
+            const score = await Scores.findById(id);
             if (!score) {
                 return res.status(404).json({ error: 'Score not found.' });
             }
