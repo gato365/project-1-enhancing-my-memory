@@ -286,6 +286,14 @@ showTextsBtn.addEventListener('click', () => {
     enteredTextDisplay.classList.remove('hidden');
 });
 
+// Set the background color to change to a random bright color every time the page is loaded
+function randomBrightColor() {
+    const randomColor = () => Math.floor(Math.random() * 256);
+    return `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+  }
+  
+  document.body.style.backgroundColor = randomBrightColor();
 
+  
 updateTimeAndDate();
 

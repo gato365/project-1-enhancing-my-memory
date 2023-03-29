@@ -16,7 +16,7 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 ##### Level 1:
 
-## Today
+
 * [X] Use this for e numbers Process for only 40 e numbers (1 set) - Multiple Steps
 
     - [X] The *User* **selects** a letters from a dropdown menu with options {A-F}.
@@ -30,20 +30,22 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 * [X] Save scores in a database
 
 
-* [ ] Center all Text * use bootstrap to make everything look nice
-    - [ ] Look at quiz project to make thisngs look nice
-* [ ] Give the ability to set a time goal
-* [ ] If goal is not met, take points off
+## Today
 * [ ] Create a score board (show best times and scores for specific groups and sets)
+    [ ] Use data from mongoDB to create a score board
 * [ ] Display in red what is wrong with my answer versus what the correct answer is
 
 
 
-## Later
+## New version
 * [ ] Use this for e numbers Process for an entire group (A-F)
+    * [ ] Keep Time for entire set 
+    * [ ] Keep time for each line
 * [ ] Perform unit testing
 * [ ] Create a visualization of past scores
-
+* [ ] Give the ability to set a time goal
+    * [ ] If goal is not met, take points off
+    
  #### In a future version:
 * [ ] Use this for music chords  Process
 * [ ] Create user accounts
