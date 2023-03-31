@@ -7,7 +7,6 @@ function updateTimer() {
     timer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-
 async function calculatePercentageCorrect() {
     const originalText = await localStorage.getItem('currentLine');
     const enteredText = userInput.value;
@@ -40,10 +39,6 @@ async function calculatePercentageCorrect() {
     return percentage;
 }
 
-
-
-
-
 function updateTimeAndDate() {
     const currentTimeDate = new Date();
     const formattedTimeDate = currentTimeDate.toLocaleString();
@@ -68,13 +63,19 @@ async function loadJSON(url) {
 }
 
 
+// Set the background color to change to a random bright color every time the page is loaded
+function randomBrightColor() {
+    const randomColor = () => Math.floor(Math.random() * 256);
+    return `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+}
 
 
 
 
 
 
-const saveBtn = document.getElementById('save-btn');
+
+const beginBtn = document.getElementById('begin-btn');
 const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const userInput = document.getElementById('user-input');
@@ -110,30 +111,47 @@ const selectedInfo = document.getElementById('selected-info');
 let startTime = null;
 let timerInterval = null;
 
+// 1. Continue button: Begin App (Page 1)
 continueBtn.addEventListener('click', () => {
+    // Set the start time
     startTime = new Date();
 
+    // Add
     inputSectionGroup.classList.add('hidden');
+    // Remove
     inputSectionNumbers.classList.remove('hidden');
-
+   
 
 });
 
-
+// 2. Select number of lines: 1 or All Sets (Page 2)
 numOfLinesSelect.addEventListener('change', (event) => {
+    console.log('1');
     const selectedOption = event.target.value;
 
+    
+
+    //const selectedValue = numOfLinesSelect.value;
+    //console.log('Selected value:', selectedValue);
+
     if (selectedOption === '1') {
+
+        // Remove
         numbersLabel.classList.remove('hidden');
         numbersSelect.classList.remove('hidden');
+
     } else {
+        // Add
         numbersLabel.classList.add('hidden');
         numbersSelect.classList.add('hidden');
+
+
     }
 });
 
-saveBtn.addEventListener('click', async () => {
-    
+// 3. Begin button: Gets relevant Information (Page 2)
+beginBtn.addEventListener('click', async () => {
+
     localStorage.setItem('selectedLetters', letters.value);
     localStorage.setItem('selectedNumbers', numbers.value);
     inputSectionGroup.classList.add('hidden');
@@ -150,11 +168,7 @@ saveBtn.addEventListener('click', async () => {
     localStorage.setItem('currentLine', dataString);
 });
 
-
-
-
-
-
+// 4. Start button: Starts the timer and begins test  (Page 3)
 startBtn.addEventListener('click', () => {
     startTime = new Date();
     timerInterval = setInterval(updateTimer, 1000);
@@ -180,8 +194,11 @@ startBtn.addEventListener('click', () => {
     });
 });
 
+// 5. Stop button: Stops the timer and shows the stats (Page 4)
 stopBtn.addEventListener('click', async () => {
     clearInterval(timerInterval);
+
+
     const totalTime = Math.floor((new Date() - startTime) / 1000);
     const percentage = await calculatePercentageCorrect();
     percentCorrect.textContent = `Percentage correct: ${percentage}%`;
@@ -192,7 +209,7 @@ stopBtn.addEventListener('click', async () => {
     // userInput.removeEventListener('input', calculatePercentageCorrect());
     userInput.removeEventListener('input', calculatePercentageCorrect); // Remove the parentheses from the function reference
 
-    
+
 
     // currentEnteredText.textContent = '';
     // Show the "Play Again" button
@@ -234,10 +251,7 @@ stopBtn.addEventListener('click', async () => {
 
 });
 
-
-
-
-// Add this event listener for the "Play Again" button
+// 6. Add this event listener for the "Play Again" button (Page 5)
 playAgainBtn.addEventListener('click', () => {
     // Reset the user input, timer, and stats
     userInput.value = '';
@@ -252,11 +266,11 @@ playAgainBtn.addEventListener('click', () => {
     tryAgainBtn.classList.add('hidden');
     inputSectionGroup.classList.remove('hidden');
     timerSection.classList.add('hidden');
-    
+
     startBtn.classList.remove('hidden');
 });
 
-// Add this event listener for the "Try Again" button
+// 7. Add this event listener for the "Try Again" button (Page 5)
 tryAgainBtn.addEventListener('click', () => {
     // Reset the user input and timer
     userInput.value = '';
@@ -271,8 +285,7 @@ tryAgainBtn.addEventListener('click', () => {
     stopBtn.classList.add('hidden');
 });
 
-
-// Add this event listener for the "Show Original and Entered Texts" button
+// 8. Add this event listener for the "Show Original and Entered Texts" button (Page 5)
 showTextsBtn.addEventListener('click', () => {
     const originalText = localStorage.getItem('currentLine');
     const enteredText = userInput.value;
@@ -286,14 +299,9 @@ showTextsBtn.addEventListener('click', () => {
     enteredTextDisplay.classList.remove('hidden');
 });
 
-// Set the background color to change to a random bright color every time the page is loaded
-function randomBrightColor() {
-    const randomColor = () => Math.floor(Math.random() * 256);
-    return `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
-  }
-  
-  document.body.style.backgroundColor = randomBrightColor();
 
-  
+document.body.style.backgroundColor = randomBrightColor();
+
+
 updateTimeAndDate();
 

@@ -31,9 +31,7 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 
 ## Today
-* [ ] Create a score board (show best times and scores for specific groups and sets)
-    [ ] Use data from mongoDB to create a score board
-* [ ] Display in red what is wrong with my answer versus what the correct answer is
+
 
 
 
@@ -43,9 +41,12 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
     * [ ] Keep time for each line
 * [ ] Perform unit testing
 * [ ] Create a visualization of past scores
+* [ ] Get rid of Start Test Button/Page, go right into the test
 * [ ] Give the ability to set a time goal
     * [ ] If goal is not met, take points off
-    
+   * [ ] Create a score board (show best times and scores for specific groups and sets)
+    [ ] Use data from mongoDB to create a score board
+* [ ] Display in red what is wrong with my answer versus what the correct answer is 
  #### In a future version:
 * [ ] Use this for music chords  Process
 * [ ] Create user accounts

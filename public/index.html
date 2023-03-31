@@ -12,6 +12,11 @@
 
 <body>
   <div class="container">
+
+    <div id="past-sets-container">
+      <div id="past-sets" class="hidden"></div>
+    </div>
+
     <h1>Testing Eman's Memory</h1>
     <div id="time-date"></div>
     <div class="input-section-group">
@@ -36,46 +41,64 @@
     <div class="input-section-numbers hidden">
 
 
-      <label for="num-of-lines" id="num-of-liness"> Select a number</label>
+      <label for="num-of-lines" id="num-of-lines"> Select a number</label>
       <select id="num-of-lines">
         <option value="many">All of the Sets</option>
         <option value="1">Just 1 Set</option>
-        
+
       </select>
       <!-- Option for 1 gives numbers -->
+      
+
+
+
+      <div class="input-section-numbers hidden">
+
+
+        <label for="num-of-lines" id="num-of-liness"> Select a number</label>
+        <select id="num-of-lines">
+          <option value="many">All of the Sets</option>
+          <option value="1">Just 1 Set</option>
+          
+        </select>
+        <!-- Option for 1 gives numbers -->
+        <br>
+  
+  
+  
+        <label for="numbers" id="label-numbers" class="hidden"> Select a set</label>
+        <select id="numbers" class="hidden">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+  
+        <br>
+        
+      </div>
+
       <br>
-
-
-
-      <label for="numbers" id="label-numbers" class="hidden"> Select a set</label>
-      <select id="numbers" class="hidden">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-
-      <br>
-      <button id="save-btn" >Save</button>
+      <button id="begin-btn">Begin</button>
     </div>
     <div class="timer-section hidden">
       <p id="timer">0:00</p>
       <input type="text" id="user-input" placeholder="Enter what you remember" class="hidden" autocomplete="off">
       <div id="current-entered" class="hidden"></div>
       <button id="start-btn">Start Test</button>
-      <div id = "selected-info" class="hidden"></div>
+      <div id="selected-info" class="hidden"></div>
       <button id="stop-btn" class="hidden">Stop</button>
     </div>
     <div class="stats-section hidden">
       <div class="button-group">
-        <button id="play-again-btn" class="hidden">Enter New String</button>
+        <button id="play-again-btn" class="hidden">Play Again</button>
         <button id="try-again-btn" class="hidden">Try Again</button>
       </div>
       <p id="percent-correct"></p>
       <p id="time-to-complete"></p>
-      <button id="show-texts-btn" class="hidden">Show Original and Entered Texts</button>
-      
+      <button id="show-texts-btn" class="hidden">Show Texts</button>
+
       <div id="texts-container" class="hidden">
         <div id="original-text"></div>
         <div id="entered-text"></div>
