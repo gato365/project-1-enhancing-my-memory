@@ -45,7 +45,8 @@ button {
 
 .timer-section .button-group {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  
 }
 
 button:hover {

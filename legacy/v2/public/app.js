@@ -40,10 +40,6 @@ async function calculatePercentageCorrect() {
     return percentage;
 }
 
-
-
-
-
 function updateTimeAndDate() {
     const currentTimeDate = new Date();
     const formattedTimeDate = currentTimeDate.toLocaleString();
