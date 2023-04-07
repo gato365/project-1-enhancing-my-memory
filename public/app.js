@@ -71,6 +71,71 @@ function randomBrightColor() {
 
 
 
+let allAttempts = [];
+
+function createSets(num) {
+    // Clear setsContainer to start fresh
+    setsContainer.innerHTML = '';
+
+    for (let i = 1; i <= num; i++) {
+        const setWrapper = document.createElement('div');
+        setWrapper.classList.add('set-wrapper');
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = `Enter what you remember for Set ${i}`;
+
+        const timer = document.createElement('p');
+        timer.classList.add('timer');
+        timer.innerText = '0:00';
+
+        const completeBtn = document.createElement('button');
+        completeBtn.innerText = `Complete Set ${i}`;
+        completeBtn.dataset.set = i;
+
+        setWrapper.appendChild(input);
+        setWrapper.appendChild(timer);
+        setWrapper.appendChild(completeBtn);
+
+        setsContainer.appendChild(setWrapper);
+
+        completeBtn.addEventListener('click', async () => {
+            if (parseInt(completeBtn.dataset.set) === num) {
+                stopBtn.classList.remove('hidden');
+            }
+            completeBtn.disabled = true;
+            input.disabled = true;
+
+            const percentage = await calculatePercentageCorrect();
+            const totalTime = Math.floor((new Date() - startTime) / 1000);
+
+            const currentAttemptData = {
+                setNumber: i,
+                percentage: percentage,
+                time: totalTime,
+                memorizeText: localStorage.getItem('memorizeText'),
+                enteredText: input.value,
+                selectedLetters: localStorage.getItem('selectedLetters'),
+                selectedNumbers: localStorage.getItem('selectedNumbers'),
+                currentLine: localStorage.getItem('currentLine'),
+            };
+
+            allAttempts.push(currentAttemptData);
+
+            const response = await fetch('/api/scores', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(currentAttemptData)
+            });
+
+            const result = await response.json();
+
+            console.log(result);
+        });
+    }
+}
 
 
 
@@ -93,6 +158,7 @@ const timeToComplete = document.getElementById('time-to-complete');
 const viewStats = document.querySelector('.view-stats');
 const percentCorrect = document.getElementById('percent-correct');
 
+const setsContainer = document.getElementById('sets-container');
 const textsContainer = document.getElementById('texts-container');
 const originalTextDisplay = document.getElementById('original-text');
 const enteredTextDisplay = document.getElementById('entered-text');
@@ -175,7 +241,10 @@ beginBtn.addEventListener('click', async () => {
     const filteredData = e_data[selectedGroup][selectedSet];
     const dataString = filteredData.join(' - ');
     localStorage.setItem('currentLine', dataString);
+
+    createSets(numOfLinesSelect.value === 'many' ? 5 : parseInt(numOfLinesSelect.value));
 });
+
 
 // 4. Start button: Starts the timer and begins test  (Page 3)
 startBtn.addEventListener('click', () => {
@@ -192,7 +261,8 @@ startBtn.addEventListener('click', () => {
     // Remove
     stopBtn.classList.remove('hidden');
     userInput.classList.remove('hidden');
-    selectedInfo.classList.remove('hidden');
+    inputNumbers.classList.remove('hidden');
+    userInput.classList.add('hidden'); // Hide the single user input
     
     // Focus on the input field and  calculate percentage correct
     userInput.focus();
@@ -235,29 +305,14 @@ stopBtn.addEventListener('click', async () => {
 
 
 
-    // Save the percentage to localStorage
-    const currentAttemptData = {
-        percentage: percentage,
-        time: totalTime,
-        memorizeText: localStorage.getItem('memorizeText'),
-        enteredText: userInput.value,
-        selectedLetters: localStorage.getItem('selectedLetters'),
-        selectedNumbers: localStorage.getItem('selectedNumbers'),
-        currentLine: localStorage.getItem('currentLine'),
-    };
-
-
-    localStorage.setItem('currentAttemptData', JSON.stringify(currentAttemptData));
-
-
-
-    const response = await fetch('/api/scores', {
+   
+    const response = await fetch('/api/all-attempts', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(currentAttemptData)
-    });
+        body: JSON.stringify(allAttempts)
+      });
 
     const result = await response.json();
 
