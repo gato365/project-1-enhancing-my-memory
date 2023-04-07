@@ -78,32 +78,31 @@ function randomBrightColor() {
 const beginBtn = document.getElementById('begin-btn');
 const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
-const userInput = document.getElementById('user-input');
-const timer = document.getElementById('timer');
-const inputSectionGroup = document.querySelector('.input-section-group');
-const inputSectionNumbers = document.querySelector('.input-section-numbers');
-const timerSection = document.querySelector('.timer-section');
-const statsSection = document.querySelector('.stats-section');
-const percentCorrect = document.getElementById('percent-correct');
-const timeToComplete = document.getElementById('time-to-complete');
-// Add this line to the top of your JavaScript file to get the "Play Again" button element
 const playAgainBtn = document.getElementById('play-again-btn');
-// Add this line to the top of your JavaScript file to get the "Try Again" button element
 const tryAgainBtn = document.getElementById('try-again-btn');
-// Add these lines at the top of your JavaScript file to get the new elements
 const showTextsBtn = document.getElementById('show-texts-btn');
+const continueBtn = document.getElementById('continue-btn');
+
+const userInput = document.getElementById('user-input');
+const inputSelectGroup = document.querySelector('.input-select-group');
+const inputSelectSet = document.querySelector('.input-select-set');
+
+const timer = document.getElementById('timer');
+const inputNumbers = document.querySelector('.input-numbers');
+const timeToComplete = document.getElementById('time-to-complete');
+const viewStats = document.querySelector('.view-stats');
+const percentCorrect = document.getElementById('percent-correct');
 
 const textsContainer = document.getElementById('texts-container');
 const originalTextDisplay = document.getElementById('original-text');
 const enteredTextDisplay = document.getElementById('entered-text');
 const currentEnteredText = document.getElementById('current-entered');
-// number and letter 
-const labelLetters = document.getElementById('labelLetters');
-const letters = document.getElementById('letters');
-const continueBtn = document.getElementById('continue-btn');
-const numOfLinesSelect = document.getElementById('num-of-lines');
-const numbersLabel = document.getElementById('label-numbers');
+
+const lettersSelect = document.getElementById('letters');
+const labelLetters = document.getElementById('label-Letters');
 const numbersSelect = document.getElementById('numbers');
+const labelNumbers = document.getElementById('label-numbers');
+const numOfLinesSelect = document.getElementById('num-of-lines');
 const selectedInfo = document.getElementById('selected-info');
 
 
@@ -117,10 +116,10 @@ continueBtn.addEventListener('click', () => {
     startTime = new Date();
 
     // Add
-    inputSectionGroup.classList.add('hidden');
+    inputSelectGroup.classList.add('hidden');
     // Remove
-    inputSectionNumbers.classList.remove('hidden');
-   
+    inputSelectSet.classList.remove('hidden');
+
 
 });
 
@@ -129,7 +128,7 @@ numOfLinesSelect.addEventListener('change', (event) => {
     console.log('1');
     const selectedOption = event.target.value;
 
-    
+
 
     //const selectedValue = numOfLinesSelect.value;
     //console.log('Selected value:', selectedValue);
@@ -137,12 +136,12 @@ numOfLinesSelect.addEventListener('change', (event) => {
     if (selectedOption === '1') {
 
         // Remove
-        numbersLabel.classList.remove('hidden');
+        labelNumbers.classList.remove('hidden');
         numbersSelect.classList.remove('hidden');
 
     } else {
         // Add
-        numbersLabel.classList.add('hidden');
+        labelNumbers.classList.add('hidden');
         numbersSelect.classList.add('hidden');
 
 
@@ -152,17 +151,27 @@ numOfLinesSelect.addEventListener('change', (event) => {
 // 3. Begin button: Gets relevant Information (Page 2)
 beginBtn.addEventListener('click', async () => {
 
-    localStorage.setItem('selectedLetters', letters.value);
-    localStorage.setItem('selectedNumbers', numbers.value);
-    inputSectionGroup.classList.add('hidden');
-    timerSection.classList.remove('hidden');
-    inputSectionNumbers.classList.add('hidden');
+    // Store the selected options in local storage
+    localStorage.setItem('selectedLetters', lettersSelect.value);
+    localStorage.setItem('selectedNumbers', numbersSelect.value);
 
+
+
+    // Remove
+    inputNumbers.classList.remove('hidden');
+
+    // Add
+    inputSelectSet.classList.add('hidden');
+    inputSelectGroup.classList.add('hidden');
+
+
+    // Load JSON file
     const e_data = await loadJSON('eman.json');
-    const selectedNumber = numbers.value
+    const selectedNumber = numbersSelect.value
     const selectedGroup = letters.value;
     const selectedSet = "set " + selectedNumber;
 
+    // Filter JSON data
     const filteredData = e_data[selectedGroup][selectedSet];
     const dataString = filteredData.join(' - ');
     localStorage.setItem('currentLine', dataString);
@@ -170,22 +179,27 @@ beginBtn.addEventListener('click', async () => {
 
 // 4. Start button: Starts the timer and begins test  (Page 3)
 startBtn.addEventListener('click', () => {
+    // Set the start time
     startTime = new Date();
     timerInterval = setInterval(updateTimer, 1000);
-    startBtn.classList.add('hidden');
-    stopBtn.classList.remove('hidden');
-    userInput.classList.remove('hidden');
-    userInput.focus();
-    userInput.addEventListener('input', calculatePercentageCorrect());
 
-    // Hide the text containers when the user starts typing
+    // Add
+    startBtn.classList.add('hidden');
     textsContainer.classList.add('hidden');
     originalTextDisplay.classList.add('hidden');
     enteredTextDisplay.classList.add('hidden');
-
+    
+    // Remove
+    stopBtn.classList.remove('hidden');
+    userInput.classList.remove('hidden');
     selectedInfo.classList.remove('hidden');
+    
+    // Focus on the input field and  calculate percentage correct
+    userInput.focus();
+    userInput.addEventListener('input', calculatePercentageCorrect());
 
-    selectedInfo.textContent = `Selected Group: ${letters.value} - Selected Set: ${numbers.value}`;
+    // Display the selected group and set
+    selectedInfo.textContent = `Selected Group: ${lettersSelect.value} - Selected Set: ${numbersSelect.value}`;
 
     // Add event listener to update currentEnteredText as the user types
     userInput.addEventListener('input', () => {
@@ -203,7 +217,7 @@ stopBtn.addEventListener('click', async () => {
     const percentage = await calculatePercentageCorrect();
     percentCorrect.textContent = `Percentage correct: ${percentage}%`;
     timeToComplete.textContent = `Time to complete: ${totalTime} seconds`;
-    statsSection.classList.remove('hidden');
+    viewStats.classList.remove('hidden');
     stopBtn.classList.add('hidden');
     userInput.classList.add('hidden');
     // userInput.removeEventListener('input', calculatePercentageCorrect());
@@ -261,11 +275,11 @@ playAgainBtn.addEventListener('click', () => {
     currentEnteredText.textContent = '';
 
     // Hide the stats section and "Play Again" button, show the input section
-    statsSection.classList.add('hidden');
+    viewStats.classList.add('hidden');
     playAgainBtn.classList.add('hidden');
     tryAgainBtn.classList.add('hidden');
-    inputSectionGroup.classList.remove('hidden');
-    timerSection.classList.add('hidden');
+    inputSelectGroup.classList.remove('hidden');
+    inputNumbers.classList.add('hidden');
 
     startBtn.classList.remove('hidden');
 });
@@ -278,9 +292,9 @@ tryAgainBtn.addEventListener('click', () => {
     currentEnteredText.textContent = '';
 
     // Hide the stats section and "Try Again" button, show the timer section and "start" button
-    statsSection.classList.add('hidden');
+    viewStats.classList.add('hidden');
     tryAgainBtn.classList.add('hidden');
-    timerSection.classList.remove('hidden');
+    inputNumbers.classList.remove('hidden');
     startBtn.classList.remove('hidden');
     stopBtn.classList.add('hidden');
 });

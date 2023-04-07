@@ -19,7 +19,12 @@
 
     <h1>Testing Eman's Memory</h1>
     <div id="time-date"></div>
-    <div class="input-section-group">
+
+
+
+
+    <!-- 1. Input Group -->
+    <div class="input-select-group">
 
       <!-- <input type="text" id="memory-text" placeholder="Enter the text you want to memorize" autocomplete="off"> -->
 
@@ -38,7 +43,9 @@
       <button id="continue-btn">Continue</button>
 
     </div>
-    <div class="input-section-numbers hidden">
+
+    <!-- 2. Input Set  -->
+    <div class="input-select-set hidden">
 
 
       <label for="num-of-lines" id="num-of-liness"> Select a number</label>
@@ -66,7 +73,8 @@
     </div>
 
 
-    <div class="timer-section hidden">
+    <!-- 3. Input Numbers -->
+    <div class="input-numbers hidden">
       <p id="timer">0:00</p>
       <input type="text" id="user-input" placeholder="Enter what you remember" class="hidden" autocomplete="off">
       <div id="current-entered" class="hidden"></div>
@@ -74,7 +82,10 @@
       <div id="selected-info" class="hidden"></div>
       <button id="stop-btn" class="hidden">Stop</button>
     </div>
-    <div class="stats-section hidden">
+
+
+    <!-- 4. View Stats -->
+    <div class="view-stats hidden">
       <div class="button-group">
         <button id="play-again-btn" class="hidden">Play Again</button>
         <button id="try-again-btn" class="hidden">Try Again</button>
@@ -87,7 +98,13 @@
         <div id="original-text"></div>
         <div id="entered-text"></div>
       </div>
+
+
+
     </div>
+
+
+
   </div>
   <script src="app.js"></script>
 </body>

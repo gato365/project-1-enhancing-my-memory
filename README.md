@@ -36,7 +36,10 @@ Purpose: I am in the process of becoming better developer, computer scientist, a
 
 
 ## New version
+* Breakdown the html, js, and css into separate comparments and change names when appropriate
+* [ ] Make input Bar Wider
 * [ ] Use this for e numbers Process for an entire group (A-F)
+    
     * [ ] Keep Time for entire set 
     * [ ] Keep time for each line
 * [ ] Perform unit testing
