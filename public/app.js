@@ -257,25 +257,25 @@ startBtn.addEventListener('click', () => {
     textsContainer.classList.add('hidden');
     originalTextDisplay.classList.add('hidden');
     enteredTextDisplay.classList.add('hidden');
-    
+    // userInput.classList.add('hidden'); // Hide the single user input
     // Remove
     stopBtn.classList.remove('hidden');
-    userInput.classList.remove('hidden');
+    // userInput.classList.remove('hidden');
     inputNumbers.classList.remove('hidden');
-    userInput.classList.add('hidden'); // Hide the single user input
+    setsContainer.classList.remove('hidden');
     
     // Focus on the input field and  calculate percentage correct
-    userInput.focus();
-    userInput.addEventListener('input', calculatePercentageCorrect());
+    // userInput.focus();
+    // userInput.addEventListener('input', calculatePercentageCorrect());
 
     // Display the selected group and set
-    selectedInfo.textContent = `Selected Group: ${lettersSelect.value} - Selected Set: ${numbersSelect.value}`;
+    // selectedInfo.textContent = `Selected Group: ${lettersSelect.value} - Selected Set: ${numbersSelect.value}`;
 
     // Add event listener to update currentEnteredText as the user types
-    userInput.addEventListener('input', () => {
-        currentEnteredText.classList.remove('hidden');
-        currentEnteredText.textContent = `Current Entered Text: ${userInput.value}`;
-    });
+    // userInput.addEventListener('input', () => {
+    //     currentEnteredText.classList.remove('hidden');
+    //     currentEnteredText.textContent = `Current Entered Text: ${userInput.value}`;
+    // });
 });
 
 // 5. Stop button: Stops the timer and shows the stats (Page 4)
@@ -284,14 +284,14 @@ stopBtn.addEventListener('click', async () => {
 
 
     const totalTime = Math.floor((new Date() - startTime) / 1000);
-    const percentage = await calculatePercentageCorrect();
-    percentCorrect.textContent = `Percentage correct: ${percentage}%`;
+    // const percentage = await calculatePercentageCorrect();
+    // percentCorrect.textContent = `Percentage correct: ${percentage}%`;
     timeToComplete.textContent = `Time to complete: ${totalTime} seconds`;
     viewStats.classList.remove('hidden');
     stopBtn.classList.add('hidden');
-    userInput.classList.add('hidden');
+    // userInput.classList.add('hidden');
     // userInput.removeEventListener('input', calculatePercentageCorrect());
-    userInput.removeEventListener('input', calculatePercentageCorrect); // Remove the parentheses from the function reference
+    // userInput.removeEventListener('input', calculatePercentageCorrect); // Remove the parentheses from the function reference
 
 
 
