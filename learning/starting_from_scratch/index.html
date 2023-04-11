@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Page</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box" id="part-1">
+            <h2>Part 1</h2>
+            <p>Content for the first div.</p>
+            <div>
+                <label for="letters" id="label-letters"> Select a groups</label>
+                <select name="letters" id="letters">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+            <button id="continue-1-btn">Continue 1</button>
+        </div>
+
+        <div class="box hidden" id="part-2">
+            <h2>Part 2</h2>
+            <p>Content for the second div.</p>
+
+            <div>
+                <label for="num-of-lines" id="num-of-liness"> Select a number</label>
+                <select id="num-of-lines">
+                    <option value="many">All of the Sets</option>
+                    <option value="1">Just 1 Set</option>
+                </select>
+
+            </div>
+            <div>
+                <label for="numbers" id="label-numbers" class="hidden"> Select a set</label>
+                <select id="numbers" class="hidden">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button id="continue-2-btn">Continue 2</button>
+        </div>
+
+        <div class="box hidden" id="part-3">
+            <h2>Part 3</h2>
+            <p>Content for the third div.</p>
+            <button id="continue-3-btn">Continue 3</button>
+        </div>
+
+        <div class="box hidden" id="part-4">
+            <h2>Part 4</h2>
+            <p>Content for the fourth div.</p>
+            <div class="row">
+                <input type="text" placeholder="Input 1">
+                <button>Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row">
+                <input type="text" placeholder="Input 2">
+                <button>Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row">
+                <input type="text" placeholder="Input 3">
+                <button>Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row">
+                <input type="text" placeholder="Input 4">
+                <button>Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row">
+                <input type="text" placeholder="Input 5">
+                <button>Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <button id="stop-btn">Stop</button>
+        </div>
+
+        <div class="box hidden" id="part-5">
+            <h2>Part 5</h2>
+            <p>Content for the fifth div.</p>
+            <button id="play-again-btn">Play Again</button>
+            <button id="select-again-btn">Select Again</button>
+            <button id="show-results-btn">Show Results</button>
+
+            <div id="results" class="hidden"> Results</div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+
+    // Buttons
+    const continue1Btn = document.getElementById('continue-1-btn');
+    const continue2Btn = document.getElementById('continue-2-btn');
+    const continue3Btn = document.getElementById('continue-3-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const playAgainBtn = document.getElementById('play-again-btn');
+    const selectAgainBtn = document.getElementById('select-again-btn');
+    const showResultsBtn = document.getElementById('show-results-btn');
+    // Divs
+    const part1 = document.getElementById('part-1');
+    const part2 = document.getElementById('part-2');
+    const part3 = document.getElementById('part-3');
+    const part4 = document.getElementById('part-4');
+    const part5 = document.getElementById('part-5');
+
+
+    const numOfLines = document.getElementById('num-of-lines');
+    const numbers = document.getElementById('numbers');
+    const labelNumbers = document.getElementById('label-numbers');
+    const letters = document.getElementById('letters');
+    const results = document.getElementById('results');
+    const labelLetters = document.getElementById('label-letters');
+    const boxes = document.querySelectorAll('.box');
+    const timers = document.querySelectorAll('.timer');
+    const inputs = document.querySelectorAll('input');
+    const buttons = document.querySelectorAll('button');
+    const rows = document.querySelectorAll('.row');
+
+
+    // Create event listener for continue 1 that makes part 1 hidden and part 2 display
+    continue1Btn.addEventListener('click', () => {
+        // Add Hidden
+        part1.classList.add('hidden');
+        // Remove Hidden
+        part2.classList.remove('hidden');
+    });
+    // Create event listener for continue 2 that makes part 2 hidden and part 3 display
+    continue2Btn.addEventListener('click', () => {
+        // Add Hidden
+        part2.classList.add('hidden');
+        // Remove Hidden
+        part3.classList.remove('hidden');
+
+
+    });
+    // Create event listener for continue 3 that makes part 3 hidden and part 4 display
+    continue3Btn.addEventListener('click', () => {
+
+        // Add Hidden
+        part3.classList.add('hidden');
+        // Remove Hidden
+        part4.classList.remove('hidden');
+    });
+    // Create event listener for stop that makes part 4 hidden and part 5 display
+    stopBtn.addEventListener('click', () => {
+        // Add Hidden
+        part4.classList.add('hidden');
+        // Remove Hidden
+
+        part5.classList.remove('hidden');
+    });
+
+    // Create event listener for play again that displays part 3 and hides part 5
+    playAgainBtn.addEventListener('click', () => {
+        // Add Hidden
+        part5.classList.add('hidden');
+        // Remove Hidden
+        part3.classList.remove('hidden');
+
+
+
+    });
+    // Create event listener for select again that displays part 1 and hides part 5
+    selectAgainBtn.addEventListener('click', () => {
+        // Add Hidden
+        part5.classList.add('hidden');
+        // Remove Hidden
+        part1.classList.remove('hidden');
+
+    });
+    // Create event listener for show results that displays part 5 and hides part 4
+    showResultsBtn.addEventListener('click', () => {
+        if (results.classList.contains('hidden')) {
+            results.classList.remove('hidden');
+            showResultsBtn.textContent = 'Hide Results';
+        } else {
+            results.classList.add('hidden');
+            showResultsBtn.textContent = 'Show Results';
+        }
+    });
+
+
+
+
+
+
+</script>
+
+</html>
