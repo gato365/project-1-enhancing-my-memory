@@ -78,32 +78,47 @@
         <div class="box hidden" id="part-4">
             <h2>Part 4</h2>
             <p>Content for the fourth div.</p>
+
+            <div class="row">
+                Overall Timer <span id="overall-timer" class="timer">00:00</span>
+            </div>
+        
             <div class="row">
                 <input type="text" placeholder="Input 1">
-                <button>Stop</button>
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
+            
             <div class="row">
                 <input type="text" placeholder="Input 2">
-                <button>Stop</button>
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
             <div class="row">
                 <input type="text" placeholder="Input 3">
-                <button>Stop</button>
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
             <div class="row">
                 <input type="text" placeholder="Input 4">
-                <button>Stop</button>
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
             <div class="row">
                 <input type="text" placeholder="Input 5">
-                <button>Stop</button>
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
-            <button id="stop-btn">Stop</button>
+            
+
+
+
+            <button id="overall-stop-btn">Stop</button>
         </div>
 
         <div class="box hidden" id="part-5">
@@ -120,12 +135,20 @@
 
 
 <script>
+    function pad(number) {
+        return number.toString().padStart(2, '0');
+    }
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        return `${pad(minutes)}:${pad(seconds % 60)}`;
+    }
 
     // Buttons
     const continue1Btn = document.getElementById('continue-1-btn');
     const continue2Btn = document.getElementById('continue-2-btn');
     const continue3Btn = document.getElementById('continue-3-btn');
-    const stopBtn = document.getElementById('stop-btn');
+    const stopBtn = document.getElementById('overall-stop-btn');
     const playAgainBtn = document.getElementById('play-again-btn');
     const selectAgainBtn = document.getElementById('select-again-btn');
     const showResultsBtn = document.getElementById('show-results-btn');
@@ -147,7 +170,11 @@
     const timers = document.querySelectorAll('.timer');
     const inputs = document.querySelectorAll('input');
     const buttons = document.querySelectorAll('button');
-    const rows = document.querySelectorAll('.row');
+    const rows = document.querySelectorAll('.row:not(:first-child)');
+    const overallTimerDisplay = document.getElementById('overall-timer');
+    let overallTime = 0;
+    let overallInterval;
+
 
 
     // Create event listener for continue 1 that makes part 1 hidden and part 2 display
@@ -174,13 +201,51 @@
         // Remove Hidden
         part4.classList.remove('hidden');
     });
+
+
+    overallInterval = setInterval(() => {
+        overallTime++;
+        overallTimerDisplay.textContent = formatTime(overallTime);
+    }, 1000);
+
+
+    // WHat 
+    rows.forEach(row => {
+        const startBtn = row.querySelector('.start');
+        const stopBtn = row.querySelector('.stop');
+        const timerDisplay = row.querySelector('.timer');
+        let timer;
+
+        startBtn.addEventListener('click', () => {
+            let time = 0;
+
+            timer = setInterval(() => {
+                time++;
+                timerDisplay.textContent = formatTime(time);
+            }, 1000);
+
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+        });
+
+        stopBtn.addEventListener('click', () => {
+            clearInterval(timer);
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        });
+
+        stopBtn.disabled = true;
+    });
     // Create event listener for stop that makes part 4 hidden and part 5 display
     stopBtn.addEventListener('click', () => {
         // Add Hidden
         part4.classList.add('hidden');
         // Remove Hidden
-
         part5.classList.remove('hidden');
+        // Stop the overall timer
+        clearInterval(overallInterval);
+        // Disable the stop button
+        overallStopBtn.disabled = true;
     });
 
     // Create event listener for play again that displays part 3 and hides part 5
