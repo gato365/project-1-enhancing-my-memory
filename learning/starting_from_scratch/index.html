@@ -128,7 +128,12 @@
             <button id="select-again-btn">Select Again</button>
             <button id="show-results-btn">Show Results</button>
 
-            <div id="results" class="hidden"> Results</div>
+            <div id="results" class="hidden">
+                <h2>Overall Time</h2>
+                <p id="overallTime">00:00:00</p>
+                <h2>Individual Times</h2>
+                <ul id="individualTimes"></ul>
+            </div>
         </div>
     </div>
 </body>
@@ -141,13 +146,31 @@
 
     function updateTime() {
         elapsedTime = Date.now() - startTime;
-    
+
         let seconds = Math.floor((elapsedTime / 1000) % 60);
         let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
         let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
-    
+
         overallTimerDisplay.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     }
+
+    // New function to update the results
+    function updateResults() {
+        // Update the overall time
+        overallTimeDisplay.textContent = overallTimerDisplay.textContent; // Use the timer display value or any other variable holding the overall time
+
+        // Update individual times
+        individualTimesList.innerHTML = ""; // Clear the list
+
+        // Assuming you have an array of individual times called 'individualTimes'
+        individualTimes.forEach(time => {
+            const listItem = document.createElement("li");
+            listItem.textContent = time; // Format the time if needed
+            individualTimesList.appendChild(listItem);
+        });
+    }
+
+    const individualTimes = []; // Add this line at the beginning of your script
 
     // Buttons
     const continue1Btn = document.getElementById('continue-1-btn');
@@ -171,12 +194,15 @@
     const letters = document.getElementById('letters');
     const results = document.getElementById('results');
     const labelLetters = document.getElementById('label-letters');
-    const boxes = document.querySelectorAll('.box');
-    const timers = document.querySelectorAll('.timer');
-    const inputs = document.querySelectorAll('input');
-    const buttons = document.querySelectorAll('button');
+   
+
+  
+  
     const rows = document.querySelectorAll('.row:not(:first-child)');
     const overallTimerDisplay = document.getElementById('overall-timer');
+    const overallTimeDisplay = document.getElementById("overallTime");
+    const individualTimesList = document.getElementById("individualTimes");
+
     let overallTime = 0;
     let overallInterval;
     let startTime;
@@ -223,42 +249,43 @@
         let startTime;
         let elapsedTime = 0;
         let interval;
-    
+
         function updateTime() {
             elapsedTime = Date.now() - startTime;
-        
+
             let seconds = Math.floor((elapsedTime / 1000) % 60);
             let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
             let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
-        
+
             timerDisplay.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
         }
-    
+
         startBtn.addEventListener('click', () => {
             startTime = Date.now() - elapsedTime;
             interval = setInterval(updateTime, 1000);
-    
+
             startBtn.disabled = true;
             stopBtn.disabled = false;
         });
-    
+
         stopBtn.addEventListener('click', () => {
             clearInterval(interval);
+            individualTimes.push(timerDisplay.textContent); // Save the elapsed time in the individualTimes array
             startBtn.disabled = false;
             stopBtn.disabled = true;
         });
-    
+
         stopBtn.disabled = true;
     });
-    
-    
-   
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
     // Create event listener for stop that makes part 4 hidden and part 5 display
     stopBtn.addEventListener('click', () => {
         // Add Hidden
@@ -290,17 +317,16 @@
 
     });
     // Create event listener for show results that displays part 5 and hides part 4
-    showResultsBtn.addEventListener('click', () => {
-        if (results.classList.contains('hidden')) {
-            results.classList.remove('hidden');
-            showResultsBtn.textContent = 'Hide Results';
+    showResultsBtn.addEventListener("click", () => {
+        if (results.classList.contains("hidden")) {
+            updateResults(); // Update the results before showing them
+            results.classList.remove("hidden");
+            showResultsBtn.textContent = "Hide Results";
         } else {
-            results.classList.add('hidden');
-            showResultsBtn.textContent = 'Show Results';
+            results.classList.add("hidden");
+            showResultsBtn.textContent = "Show Results";
         }
     });
-
-
 
 
 
