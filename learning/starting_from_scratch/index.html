@@ -79,17 +79,17 @@
             <h2>Part 4</h2>
             <p>Content for the fourth div.</p>
 
-            <div class="row">
+            <div>
                 Overall Timer <span id="overall-timer" class="timer">00:00</span>
             </div>
-        
+
             <div class="row">
                 <input type="text" placeholder="Input 1">
                 <button class="start">Start</button>
                 <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
-            
+
             <div class="row">
                 <input type="text" placeholder="Input 2">
                 <button class="start">Start</button>
@@ -114,7 +114,7 @@
                 <button class="stop">Stop</button>
                 <span class="timer">00:00</span>
             </div>
-            
+
 
 
 
@@ -139,9 +139,14 @@
         return number.toString().padStart(2, '0');
     }
 
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        return `${pad(minutes)}:${pad(seconds % 60)}`;
+    function updateTime() {
+        elapsedTime = Date.now() - startTime;
+    
+        let seconds = Math.floor((elapsedTime / 1000) % 60);
+        let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+        let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+    
+        overallTimerDisplay.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     }
 
     // Buttons
@@ -174,6 +179,7 @@
     const overallTimerDisplay = document.getElementById('overall-timer');
     let overallTime = 0;
     let overallInterval;
+    let startTime;
 
 
 
@@ -200,52 +206,69 @@
         part3.classList.add('hidden');
         // Remove Hidden
         part4.classList.remove('hidden');
+
+
+        // Begin Timer
+        startTime = Date.now() - overallTime;
+        interval = setInterval(updateTime, 1000);
     });
 
 
-    overallInterval = setInterval(() => {
-        overallTime++;
-        overallTimerDisplay.textContent = formatTime(overallTime);
-    }, 1000);
 
 
-    // WHat 
     rows.forEach(row => {
         const startBtn = row.querySelector('.start');
         const stopBtn = row.querySelector('.stop');
         const timerDisplay = row.querySelector('.timer');
-        let timer;
-
+        let startTime;
+        let elapsedTime = 0;
+        let interval;
+    
+        function updateTime() {
+            elapsedTime = Date.now() - startTime;
+        
+            let seconds = Math.floor((elapsedTime / 1000) % 60);
+            let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+            let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+        
+            timerDisplay.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        }
+    
         startBtn.addEventListener('click', () => {
-            let time = 0;
-
-            timer = setInterval(() => {
-                time++;
-                timerDisplay.textContent = formatTime(time);
-            }, 1000);
-
+            startTime = Date.now() - elapsedTime;
+            interval = setInterval(updateTime, 1000);
+    
             startBtn.disabled = true;
             stopBtn.disabled = false;
         });
-
+    
         stopBtn.addEventListener('click', () => {
-            clearInterval(timer);
+            clearInterval(interval);
             startBtn.disabled = false;
             stopBtn.disabled = true;
         });
-
+    
         stopBtn.disabled = true;
     });
+    
+    
+   
+    
+    
+    
+    
+    
+    
     // Create event listener for stop that makes part 4 hidden and part 5 display
     stopBtn.addEventListener('click', () => {
         // Add Hidden
         part4.classList.add('hidden');
         // Remove Hidden
         part5.classList.remove('hidden');
+
         // Stop the overall timer
         clearInterval(overallInterval);
-        // Disable the stop button
-        overallStopBtn.disabled = true;
+
     });
 
     // Create event listener for play again that displays part 3 and hides part 5
