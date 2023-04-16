@@ -209,8 +209,6 @@ numOfLinesSelect.addEventListener('change', (event) => {
         // Add
         labelNumbers.classList.add('hidden');
         numbersSelect.classList.add('hidden');
-
-
     }
 });
 
