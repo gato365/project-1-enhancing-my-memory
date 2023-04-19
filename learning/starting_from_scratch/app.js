@@ -47,6 +47,31 @@ function updateResults() {
     });
 }
 
+function resetTimers() {
+    // Reset overall timer
+    clearInterval(overallInterval);
+    overallTime = 0;
+    overallTimerDisplay.textContent = "00:00:00";
+
+    // Reset individual timers
+    rows.forEach(row => {
+        const startBtn = row.querySelector('.start');
+        const stopBtn = row.querySelector('.stop');
+        const timerDisplay = row.querySelector('.timer');
+
+        clearInterval(row.interval);
+        row.elapsedTime = 0;
+        timerDisplay.textContent = "00:00:00";
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+    });
+
+    // Clear individualTimes array
+    individualTimes.length = 0;
+}
+
+
+
 const individualTimes = []; // Add this line at the beginning of your script
 
 // Buttons
@@ -71,7 +96,7 @@ const labelNumbers = document.getElementById('label-numbers');
 const letters = document.getElementById('letters');
 const results = document.getElementById('results');
 const labelLetters = document.getElementById('label-letters');
-
+const set5 = document.getElementById('set-5');
 
 
 
@@ -106,7 +131,7 @@ continue2Btn.addEventListener('click', (event) => {
 
 // Create event listener for select for number of lines
 numOfLines.addEventListener('change', (event) => {
-   
+
     const selectedOption = event.target.value;
 
 
@@ -128,7 +153,7 @@ numOfLines.addEventListener('change', (event) => {
 
 
 // Create event listener for continue 3 that makes part 3 hidden and part 4 display
-continue3Btn.addEventListener('click', async () => {
+continue3Btn.addEventListener('click', async (event) => {
 
     // Add Hidden
     part3.classList.add('hidden');
@@ -149,11 +174,24 @@ continue3Btn.addEventListener('click', async () => {
     console.log(dataString);
 
 
-    
+
 
     // Begin Timer
     startTime = Date.now() - overallTime;
     interval = setInterval(updateTime, 1000);
+
+
+
+    const selectedOption = event.target.value;
+    console.log('1');
+
+    if (selectedOption === '1') {
+
+        // add
+        set5.add('hidden');
+        console.log('1');
+
+    }
 });
 
 
@@ -223,7 +261,8 @@ playAgainBtn.addEventListener('click', () => {
     // Remove Hidden
     part3.classList.remove('hidden');
 
-
+    // Reset timers
+    resetTimers();
 
 });
 // Create event listener for select again that displays part 1 and hides part 5
@@ -232,6 +271,8 @@ selectAgainBtn.addEventListener('click', () => {
     part5.classList.add('hidden');
     // Remove Hidden
     part1.classList.remove('hidden');
+    // Reset timers
+    resetTimers();
 
 });
 // Create event listener for show results that displays part 5 and hides part 4
