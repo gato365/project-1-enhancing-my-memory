@@ -33,8 +33,10 @@ function updateTime() {
 
 // New function to update the results
 function updateResults() {
-    // Update the overall time
-    overallTimeDisplay.textContent = overallTimerDisplay.textContent; // Use the timer display value or any other variable holding the overall time
+   // Update the overall time only if numOfLines is not equal to 1
+   if (selectedOption !== '1') {
+    overallTimeDisplay.textContent = overallTimerDisplay.textContent;
+}
 
     // Update individual times
     individualTimesList.innerHTML = ""; // Clear the list
@@ -47,13 +49,13 @@ function updateResults() {
     });
 }
 
-function resetTimers() {
-    // Reset overall timer
+function reset(resetTimersOnly) {
+    // Reset the overall timer
     clearInterval(overallInterval);
     overallTime = 0;
-    overallTimerDisplay.textContent = "00:00:00";
+    overallTimerDisplay.textContent = '00:00:00';
 
-    // Reset individual timers
+    // Reset the individual timers
     rows.forEach(row => {
         const startBtn = row.querySelector('.start');
         const stopBtn = row.querySelector('.stop');
@@ -61,15 +63,20 @@ function resetTimers() {
 
         clearInterval(row.interval);
         row.elapsedTime = 0;
-        timerDisplay.textContent = "00:00:00";
+        timerDisplay.textContent = '00:00:00';
         startBtn.disabled = false;
         stopBtn.disabled = true;
     });
 
-    // Clear individualTimes array
+    // Clear the individualTimes array
     individualTimes.length = 0;
-}
 
+    if (!resetTimersOnly) {
+        // Hide part-4a and part-4b
+        part4a.classList.add('hidden');
+        part4b.classList.add('hidden');
+    }
+}
 
 
 const individualTimes = []; // Add this line at the beginning of your script
@@ -78,7 +85,8 @@ const individualTimes = []; // Add this line at the beginning of your script
 const continue1Btn = document.getElementById('continue-1-btn');
 const continue2Btn = document.getElementById('continue-2-btn');
 const continue3Btn = document.getElementById('continue-3-btn');
-const stopBtn = document.getElementById('overall-stop-btn');
+const stopBtna = document.getElementById('overall-stop-btn-a');
+const stopBtnb = document.getElementById('overall-stop-btn-b');
 const playAgainBtn = document.getElementById('play-again-btn');
 const selectAgainBtn = document.getElementById('select-again-btn');
 const showResultsBtn = document.getElementById('show-results-btn');
@@ -86,7 +94,8 @@ const showResultsBtn = document.getElementById('show-results-btn');
 const part1 = document.getElementById('part-1');
 const part2 = document.getElementById('part-2');
 const part3 = document.getElementById('part-3');
-const part4 = document.getElementById('part-4');
+const part4a = document.getElementById('part-4a');
+const part4b = document.getElementById('part-4b');
 const part5 = document.getElementById('part-5');
 
 
@@ -108,7 +117,7 @@ const individualTimesList = document.getElementById("individualTimes");
 let overallTime = 0;
 let overallInterval;
 let startTime;
-
+let selectedOption = null;
 
 
 // Create event listener for continue 1 that makes part 1 hidden and part 2 display
@@ -132,7 +141,7 @@ continue2Btn.addEventListener('click', (event) => {
 // Create event listener for select for number of lines
 numOfLines.addEventListener('change', (event) => {
 
-    const selectedOption = event.target.value;
+    selectedOption = event.target.value;
 
 
     if (selectedOption === '1') {
@@ -153,14 +162,19 @@ numOfLines.addEventListener('change', (event) => {
 
 
 // Create event listener for continue 3 that makes part 3 hidden and part 4 display
-continue3Btn.addEventListener('click', async (event) => {
+continue3Btn.addEventListener('click', async () => {
+
+
 
     // Add Hidden
     part3.classList.add('hidden');
-    // Remove Hidden
-    part4.classList.remove('hidden');
 
-
+    // If there is a value in the number of lines select
+    if (selectedOption === '1') {
+        part4b.classList.remove('hidden');
+    } else {
+        part4a.classList.remove('hidden');
+    }
     // Load in e
     e_data = await loadJSON(' ../../public/eman.json');
     // Get the selected number and group
@@ -178,20 +192,22 @@ continue3Btn.addEventListener('click', async (event) => {
 
     // Begin Timer
     startTime = Date.now() - overallTime;
-    interval = setInterval(updateTime, 1000);
-
-
-
-    const selectedOption = event.target.value;
-    console.log('1');
-
+    overallInterval = setInterval(updateTime, 1000);
     if (selectedOption === '1') {
-
-        // add
-        set5.add('hidden');
-        console.log('1');
-
+        reset(true); // Reset only the timers
     }
+
+
+
+
+
+
+    // if (selectedOption === '1') {
+    //     // add
+    //     set5.add('hidden');
+    //     console.log('1');
+
+    // }
 });
 
 
@@ -243,9 +259,27 @@ rows.forEach(row => {
 
 
 // Create event listener for stop that makes part 4 hidden and part 5 display
-stopBtn.addEventListener('click', () => {
+stopBtna.addEventListener('click', () => {
+
+    part4a.classList.add('hidden');
+
+
+    // Remove Hidden
+    part5.classList.remove('hidden');
+
+    // Stop the overall timer
+    clearInterval(overallInterval);
+
+});
+
+
+
+// Create event listener for stop that makes part 4 hidden and part 5 display
+stopBtnb.addEventListener('click', () => {
     // Add Hidden
-    part4.classList.add('hidden');
+    part4b.classList.add('hidden');
+
+
     // Remove Hidden
     part5.classList.remove('hidden');
 
@@ -262,7 +296,7 @@ playAgainBtn.addEventListener('click', () => {
     part3.classList.remove('hidden');
 
     // Reset timers
-    resetTimers();
+    reset(false);
 
 });
 // Create event listener for select again that displays part 1 and hides part 5
@@ -272,7 +306,7 @@ selectAgainBtn.addEventListener('click', () => {
     // Remove Hidden
     part1.classList.remove('hidden');
     // Reset timers
-    resetTimers();
+    reset(false);
 
 });
 // Create event listener for show results that displays part 5 and hides part 4
