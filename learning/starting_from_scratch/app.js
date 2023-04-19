@@ -71,6 +71,8 @@ function reset(resetTimersOnly) {
     // Clear the individualTimes array
     individualTimes.length = 0;
 
+
+
     if (!resetTimersOnly) {
         // Hide part-4a and part-4b
         part4a.classList.add('hidden');
@@ -118,6 +120,7 @@ let overallTime = 0;
 let overallInterval;
 let startTime;
 let selectedOption = null;
+const allLines = [];
 
 
 // Create event listener for continue 1 that makes part 1 hidden and part 2 display
@@ -177,16 +180,34 @@ continue3Btn.addEventListener('click', async () => {
     }
     // Load in e
     e_data = await loadJSON(' ../../public/eman.json');
-    // Get the selected number and group
-    const selectedNumber = numbersSelect.value
-    const selectedGroup = letters.value;
-    const selectedSet = "set " + selectedNumber;
+    // // Get the selected number and group
+    // const selectedNumber = numbersSelect.value
+    // const selectedGroup = letters.value;
+    // const selectedSet = "set " + selectedNumber;
 
-    // Filter JSON data
-    const filteredData = e_data[selectedGroup][selectedSet];
-    const dataString = filteredData.join(' - ');
-    console.log(dataString);
+    // // Filter JSON data
+    // const filteredData = e_data[selectedGroup][selectedSet];
+    // const dataString = filteredData.join(' - ');
+    // console.log(dataString);
 
+
+
+    if (selectedOption === '1') {
+        const selectedNumber = numbersSelect.value;
+        const selectedGroup = letters.value;
+        const selectedSet = "set " + selectedNumber;
+
+        // Filter JSON data
+        const filteredData = e_data[selectedGroup][selectedSet];
+        const dataString = filteredData.join(' - ');
+        console.log(dataString);
+    } else {
+        const selectedGroup = letters.value;
+        Object.keys(e_data[selectedGroup]).forEach(set => {
+            allLines.push(e_data[selectedGroup][set]);
+        });
+        console.log(allLines);
+    }
 
 
 
