@@ -180,15 +180,7 @@ continue3Btn.addEventListener('click', async () => {
     }
     // Load in e
     e_data = await loadJSON(' ../../public/eman.json');
-    // // Get the selected number and group
-    // const selectedNumber = numbersSelect.value
-    // const selectedGroup = letters.value;
-    // const selectedSet = "set " + selectedNumber;
-
-    // // Filter JSON data
-    // const filteredData = e_data[selectedGroup][selectedSet];
-    // const dataString = filteredData.join(' - ');
-    // console.log(dataString);
+    // Get the selected number and group
 
 
 
