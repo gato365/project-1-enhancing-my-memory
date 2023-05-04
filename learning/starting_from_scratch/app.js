@@ -298,7 +298,8 @@ calculateSinglePercentageBtn.addEventListener('click', () => {
     const enteredText = document.getElementById('single-input').value; // Assuming you have an input with the ID 'single-input'.
 
     const percentageCorrect = calculatePercentageCorrect(originalText, enteredText);
-    console.log(`Percentage correct for single input: ${percentageCorrect}`);
+    console.log(`Percentage correct for single input: ${percentageCorrect} %`);
+    document.getElementById('single-percentage').textContent = `Percentage Correct: ${percentageCorrect}%`;
 });
 
 
