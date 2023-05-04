@@ -134,6 +134,7 @@ const letters = document.getElementById('letters');
 const results = document.getElementById('results');
 const labelLetters = document.getElementById('label-letters');
 const set5 = document.getElementById('set-5');
+const selectedGroupSet = document.getElementById('selected-group-set');
 
 
 const calculateSinglePercentageBtn = document.getElementById('calculate-single-percentage-btn');
@@ -225,6 +226,7 @@ continue3Btn.addEventListener('click', async () => {
         const filteredData = e_data[selectedGroup][selectedSet];
         dataString = filteredData.join(' - ');
         console.log(dataString);
+        selectedGroupSet.textContent = `Group ${selectedGroup} - Set ${selectedNumber}`;
     } else {
         const selectedGroup = letters.value;
         Object.keys(e_data[selectedGroup]).forEach(set => {
@@ -342,8 +344,6 @@ stopBtna.addEventListener('click', () => {
 stopBtnb.addEventListener('click', () => {
     // Add Hidden
     part4b.classList.add('hidden');
-
-
     // Remove Hidden
     part5.classList.remove('hidden');
 
