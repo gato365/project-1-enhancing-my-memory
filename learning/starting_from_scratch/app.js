@@ -59,10 +59,10 @@ function updateTime() {
 
 // New function to update the results
 function updateResults() {
-   // Update the overall time only if numOfLines is not equal to 1
-   if (selectedOption !== '1') {
-    overallTimeDisplay.textContent = overallTimerDisplay.textContent;
-}
+    // Update the overall time only if numOfLines is not equal to 1
+    if (selectedOption !== '1') {
+        overallTimeDisplay.textContent = overallTimerDisplay.textContent;
+    }
 
     // Update individual times
     individualTimesList.innerHTML = ""; // Clear the list
@@ -75,7 +75,7 @@ function updateResults() {
     });
 }
 
-function reset(resetTimersOnly) {
+function reset(resetTimersOnly, resetIndividualTimerDisplay = false) {
     // Reset the overall timer
     clearInterval(overallInterval);
     overallTime = 0;
@@ -98,11 +98,14 @@ function reset(resetTimersOnly) {
     individualTimes.length = 0;
 
 
-
     if (!resetTimersOnly) {
         // Hide part-4a and part-4b
         part4a.classList.add('hidden');
         part4b.classList.add('hidden');
+    }
+
+    if (resetIndividualTimerDisplay) {
+        individualTimerDisplay.textContent = '00:00:00';
     }
 }
 
@@ -149,7 +152,7 @@ let overallInterval;
 let startTime;
 let selectedOption = null;
 const allLines = [];
-let dataString; 
+let dataString;
 // Get today's date and format it as a string
 const today = new Date();
 const dateString = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
@@ -311,14 +314,14 @@ calculateSinglePercentageBtn.addEventListener('click', () => {
 
 
 
-        // Create a new JSON object and add the time and percentage correct
-        const resultData = {
-            date: dateString,
-            time: individualTimerDisplay.textContent,
-            percentageCorrect: percentageCorrect
-        };
-    
-        console.log(resultData);
+    // Create a new JSON object and add the time and percentage correct
+    const resultData = {
+        date: dateString,
+        time: individualTimerDisplay.textContent,
+        percentageCorrect: percentageCorrect
+    };
+
+    console.log(resultData);
 
 });
 
@@ -347,8 +350,17 @@ stopBtnb.addEventListener('click', () => {
     // Remove Hidden
     part5.classList.remove('hidden');
 
-    // Stop the overall timer
-    clearInterval(overallInterval);
+    // Clear the overall timer
+    clearInterval(individualTimerDisplay);
+
+
+    // Clear the input
+    document.getElementById('single-input').value = ''; // Clear the input
+    // Clear the percentage
+    document.getElementById('single-percentage').textContent = ''; // Clear the percentage
+    // Clear the timer
+    document.getElementById('individual-timer').textContent = '00:00:00'; // Focus on the input
+
 
 });
 
@@ -360,7 +372,9 @@ playAgainBtn.addEventListener('click', () => {
     part3.classList.remove('hidden');
 
     // Reset timers
-    reset(false);
+    reset(false, true);
+
+
 
 });
 // Create event listener for select again that displays part 1 and hides part 5
@@ -370,7 +384,10 @@ selectAgainBtn.addEventListener('click', () => {
     // Remove Hidden
     part1.classList.remove('hidden');
     // Reset timers
-    reset(false);
+    reset(false, true);
+
+
+
 
 });
 // Create event listener for show results that displays part 5 and hides part 4
