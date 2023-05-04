@@ -139,6 +139,7 @@ const set5 = document.getElementById('set-5');
 const calculateSinglePercentageBtn = document.getElementById('calculate-single-percentage-btn');
 const rows = document.querySelectorAll('.row:not(:first-child)');
 const overallTimerDisplay = document.getElementById('overall-timer');
+const individualTimerDisplay = document.getElementById('individual-timer');
 const overallTimeDisplay = document.getElementById("overallTime");
 const individualTimesList = document.getElementById("individualTimes");
 
@@ -148,6 +149,11 @@ let startTime;
 let selectedOption = null;
 const allLines = [];
 let dataString; 
+// Get today's date and format it as a string
+const today = new Date();
+const dateString = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+
 
 // Create event listener for continue 1 that makes part 1 hidden and part 2 display
 continue1Btn.addEventListener('click', () => {
@@ -300,6 +306,18 @@ calculateSinglePercentageBtn.addEventListener('click', () => {
     const percentageCorrect = calculatePercentageCorrect(originalText, enteredText);
     console.log(`Percentage correct for single input: ${percentageCorrect} %`);
     document.getElementById('single-percentage').textContent = `Percentage Correct: ${percentageCorrect}%`;
+
+
+
+        // Create a new JSON object and add the time and percentage correct
+        const resultData = {
+            date: dateString,
+            time: individualTimerDisplay.textContent,
+            percentageCorrect: percentageCorrect
+        };
+    
+        console.log(resultData);
+
 });
 
 
