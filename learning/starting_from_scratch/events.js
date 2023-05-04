@@ -33,6 +33,8 @@ const overallTimerDisplay = document.getElementById('overall-timer');
 const individualTimerDisplay = document.getElementById('individual-timer');
 const overallTimeDisplay = document.getElementById("overallTime");
 const individualTimesList = document.getElementById("individualTimes");
+const calculateAllPercentagesBtn = document.getElementById("calculate-all-percentages-btn");
+
 
 let overallTime = 0;
 let overallInterval;
@@ -114,14 +116,32 @@ continue3Btn.addEventListener('click', async () => {
         console.log(dataString);
         selectedGroupSet.textContent = `Group ${selectedGroup} - Set ${selectedNumber}`;
     } else {
+        //     const selectedGroup = letters.value;
+        //     Object.keys(e_data[selectedGroup]).forEach(set => {
+        //         allLines.push(e_data[selectedGroup][set]);
+        //     });
+        //     console.log(allLines);
+        // }
+
+
+
         const selectedGroup = letters.value;
+        allLines.length = 0; // Clear the allLines array
         Object.keys(e_data[selectedGroup]).forEach(set => {
             allLines.push(e_data[selectedGroup][set]);
         });
         console.log(allLines);
+
+        // Create input elements for each set
+        const allInputsContainer = document.getElementById("all-inputs-container");
+        allInputsContainer.innerHTML = ""; // Clear the container
+        allLines.forEach((set, index) => {
+            const inputElement = document.createElement("textarea");
+            inputElement.id = `input-set-${index}`;
+            inputElement.placeholder = `Enter text for Set ${index + 1}`;
+            allInputsContainer.appendChild(inputElement);
+        });
     }
-
-
 
     // Begin Timer
     startTime = Date.now() - overallTime;
@@ -132,6 +152,7 @@ continue3Btn.addEventListener('click', async () => {
 
 
 });
+
 
 
 
@@ -201,6 +222,29 @@ calculateSinglePercentageBtn.addEventListener('click', () => {
 
 });
 
+
+
+
+
+// Create event listener for calculate all percentages
+calculateAllPercentagesBtn.addEventListener("click", () => {
+    const originalTexts = allLines;
+    const enteredTexts = allLines.map((_, index) => {
+        return document.getElementById(`input-set-${index}`).value;
+    });
+
+    const percentageCorrectArray = calculatePercentageCorrectAll(originalTexts, enteredTexts);
+    console.log(percentageCorrectArray); // Log the array of percentage correct values for each set
+
+    // Display the percentage correct for each set
+    const allPercentagesContainer = document.getElementById("all-percentages-container");
+    allPercentagesContainer.innerHTML = ""; // Clear the container
+    percentageCorrectArray.forEach((percentage, index) => {
+        const percentageElement = document.createElement("p");
+        percentageElement.textContent = `Percentage Correct for Set ${index + 1}: ${percentage}%`;
+        allPercentagesContainer.appendChild(percentageElement);
+    });
+});
 
 
 // Create event listener for stop that makes part 4 hidden and part 5 display
@@ -279,3 +323,4 @@ showResultsBtn.addEventListener("click", () => {
         showResultsBtn.textContent = "Show Results";
     }
 });
+
