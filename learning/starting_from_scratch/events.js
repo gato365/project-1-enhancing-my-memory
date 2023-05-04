@@ -1,114 +1,3 @@
-// Calculate the percentage of correct characters
-// function calculatePercentageCorrect(originalText, enteredText) {
-//     let correctChars = 0;
-
-//     for (let i = 0; i < enteredText.length && i < originalText.length; i++) {
-//         if (enteredText[i] === originalText[i]) {
-//             correctChars++;
-//         }
-//     }
-
-//     let percentage = Math.floor((correctChars / originalText.length) * 100);
-
-//     if (enteredText.length > originalText.length) {
-//         percentage = percentage - 0.05 * (enteredText.length - originalText.length);
-//     }
-
-//     if (percentage < 0) {
-//         percentage = 0;
-//     } else if (percentage > 100) {
-//         percentage = 100;
-//     }
-
-//     return percentage;
-// }
-
-
-// // Load JSON File
-// let e_data;
-
-
-// async function loadJSON(url) {
-//     try {
-//         const response = await fetch(url);
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         e_data = await response.json();
-//         return e_data;
-
-//     } catch (error) {
-//         console.error('Error fetching JSON:', error);
-//     }
-// }
-
-// function pad(number) {
-//     return number.toString().padStart(2, '0');
-// }
-
-// function updateTime() {
-//     elapsedTime = Date.now() - startTime;
-
-//     let seconds = Math.floor((elapsedTime / 1000) % 60);
-//     let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-//     let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
-
-//     overallTimerDisplay.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2,
-//         "0")}:${seconds.toString().padStart(2, "0")}`;
-// }
-
-// // New function to update the results
-// function updateResults() {
-//     // Update the overall time only if numOfLines is not equal to 1
-//     if (selectedOption !== '1') {
-//         overallTimeDisplay.textContent = overallTimerDisplay.textContent;
-//     }
-
-//     // Update individual times
-//     individualTimesList.innerHTML = ""; // Clear the list
-
-//     // Assuming you have an array of individual times called 'individualTimes'
-//     individualTimes.forEach(time => {
-//         const listItem = document.createElement("li");
-//         listItem.textContent = time; // Format the time if needed
-//         individualTimesList.appendChild(listItem);
-//     });
-// }
-
-// function reset(resetTimersOnly, resetIndividualTimerDisplay = false) {
-//     // Reset the overall timer
-//     clearInterval(overallInterval);
-//     overallTime = 0;
-//     overallTimerDisplay.textContent = '00:00:00';
-
-//     // Reset the individual timers
-//     rows.forEach(row => {
-//         const startBtn = row.querySelector('.start');
-//         const stopBtn = row.querySelector('.stop');
-//         const timerDisplay = row.querySelector('.timer');
-
-//         clearInterval(row.interval);
-//         row.elapsedTime = 0;
-//         timerDisplay.textContent = '00:00:00';
-//         startBtn.disabled = false;
-//         stopBtn.disabled = true;
-//     });
-
-//     // Clear the individualTimes array
-//     individualTimes.length = 0;
-
-
-//     if (!resetTimersOnly) {
-//         // Hide part-4a and part-4b
-//         part4a.classList.add('hidden');
-//         part4b.classList.add('hidden');
-//     }
-
-//     if (resetIndividualTimerDisplay) {
-//         individualTimerDisplay.textContent = '00:00:00';
-//     }
-// }
-
 
 const individualTimes = []; // Add this line at the beginning of your script
 
@@ -138,8 +27,6 @@ const results = document.getElementById('results');
 const labelLetters = document.getElementById('label-letters');
 const set5 = document.getElementById('set-5');
 const selectedGroupSet = document.getElementById('selected-group-set');
-
-
 const calculateSinglePercentageBtn = document.getElementById('calculate-single-percentage-btn');
 const rows = document.querySelectorAll('.row:not(:first-child)');
 const overallTimerDisplay = document.getElementById('overall-timer');
@@ -153,9 +40,7 @@ let startTime;
 let selectedOption = null;
 const allLines = [];
 let dataString;
-// Get today's date and format it as a string
-const today = new Date();
-const dateString = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
 
 
 
@@ -218,8 +103,6 @@ continue3Btn.addEventListener('click', async () => {
     e_data = await loadJSON(' ../../public/eman.json');
     // Get the selected number and group
 
-
-
     if (selectedOption === '1') {
         const selectedNumber = numbersSelect.value;
         const selectedGroup = letters.value;
@@ -248,16 +131,6 @@ continue3Btn.addEventListener('click', async () => {
     }
 
 
-
-
-
-
-    // if (selectedOption === '1') {
-    //     // add
-    //     set5.add('hidden');
-    //     console.log('1');
-
-    // }
 });
 
 
