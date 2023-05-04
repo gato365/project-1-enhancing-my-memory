@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Example Page</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1>Timer</h1>
+    <div id="timer">00:00:00</div>
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+    <button id="restart-btn">Restart</button>
+
+</body>
+
+<script>
+    // Select the buttons and timer div
+    const startBtn = document.getElementById("start-btn");
+    const stopBtn = document.getElementById("stop-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    const timer = document.getElementById("timer");
+
+    // Initialize the timer variables
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let interval;
+
+    // Define a function to start the timer
+    function startTimer() {
+        interval = setInterval(() => {
+            // Increment the seconds
+            seconds++;
+
+            // Increment the minutes if necessary
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+            }
+
+            // Increment the hours if necessary
+            if (minutes == 60) {
+                minutes = 0;
+                hours++;
+            }
+
+            // Format the time as HH:MM:SS
+            const time = `${hours.toString().padStart(2, "0")}:${minutes
+                .toString()
+                .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+            // Update the timer div with the formatted time
+            timer.innerText = time;
+        }, 1000);
+    }
+
+    // Define a function to stop the timer
+    function stopTimer() {
+        clearInterval(interval);
+    }
+
+    // Define a function to restart the timer
+    function restartTimer() {
+        clearInterval(interval);
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        timer.innerText = "00:00:00";
+    }
+
+    // Add event listeners to the buttons
+    startBtn.addEventListener("click", startTimer);
+    stopBtn.addEventListener("click", stopTimer);
+    restartBtn.addEventListener("click", restartTimer);
+
+</script>
+
+</html>

@@ -295,6 +295,9 @@ rows.forEach(row => {
         individualTimes.push(timerDisplay.textContent); // Save the elapsed time in the individualTimes array
         startBtn.disabled = false;
         stopBtn.disabled = true;
+        // Clear the timer
+        individualTimerDisplay.textContent = "00:00:00";
+        elapsedTime = 0;
     });
 
     stopBtn.disabled = true;
@@ -359,7 +362,9 @@ stopBtnb.addEventListener('click', () => {
     // Clear the percentage
     document.getElementById('single-percentage').textContent = ''; // Clear the percentage
     // Clear the timer
-    document.getElementById('individual-timer').textContent = '00:00:00'; // Focus on the input
+    individualTimerDisplay.textContent = "00:00:00";
+
+
 
 
 });
