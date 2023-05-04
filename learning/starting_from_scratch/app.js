@@ -1,3 +1,29 @@
+// Calculate the percentage of correct characters
+function calculatePercentageCorrect(originalText, enteredText) {
+    let correctChars = 0;
+
+    for (let i = 0; i < enteredText.length && i < originalText.length; i++) {
+        if (enteredText[i] === originalText[i]) {
+            correctChars++;
+        }
+    }
+
+    let percentage = Math.floor((correctChars / originalText.length) * 100);
+
+    if (enteredText.length > originalText.length) {
+        percentage = percentage - 0.05 * (enteredText.length - originalText.length);
+    }
+
+    if (percentage < 0) {
+        percentage = 0;
+    } else if (percentage > 100) {
+        percentage = 100;
+    }
+
+    return percentage;
+}
+
+
 // Load JSON File
 let e_data;
 
@@ -110,7 +136,7 @@ const labelLetters = document.getElementById('label-letters');
 const set5 = document.getElementById('set-5');
 
 
-
+const calculateSinglePercentageBtn = document.getElementById('calculate-single-percentage-btn');
 const rows = document.querySelectorAll('.row:not(:first-child)');
 const overallTimerDisplay = document.getElementById('overall-timer');
 const overallTimeDisplay = document.getElementById("overallTime");
@@ -121,7 +147,7 @@ let overallInterval;
 let startTime;
 let selectedOption = null;
 const allLines = [];
-
+let dataString; 
 
 // Create event listener for continue 1 that makes part 1 hidden and part 2 display
 continue1Btn.addEventListener('click', () => {
@@ -191,7 +217,7 @@ continue3Btn.addEventListener('click', async () => {
 
         // Filter JSON data
         const filteredData = e_data[selectedGroup][selectedSet];
-        const dataString = filteredData.join(' - ');
+        dataString = filteredData.join(' - ');
         console.log(dataString);
     } else {
         const selectedGroup = letters.value;
@@ -266,8 +292,14 @@ rows.forEach(row => {
 
 
 
+// Create ecent listener for show results that makes part 4 hidden and part 5 display
+calculateSinglePercentageBtn.addEventListener('click', () => {
+    const originalText = dataString; // This is the string created from the filteredData array.
+    const enteredText = document.getElementById('single-input').value; // Assuming you have an input with the ID 'single-input'.
 
-
+    const percentageCorrect = calculatePercentageCorrect(originalText, enteredText);
+    console.log(`Percentage correct for single input: ${percentageCorrect}`);
+});
 
 
 
