@@ -33,6 +33,8 @@ const overallTimerDisplay = document.getElementById('overall-timer');
 const individualTimerDisplay = document.getElementById('individual-timer');
 const overallTimeDisplay = document.getElementById("overallTime");
 const individualTimesList = document.getElementById("individualTimes");
+
+
 const calculateAllPercentagesBtn = document.getElementById("calculate-all-percentages-btn");
 
 
