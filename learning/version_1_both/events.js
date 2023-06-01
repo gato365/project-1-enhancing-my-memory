@@ -10,6 +10,7 @@ const stopBtnb = document.getElementById('overall-stop-btn-b');
 const playAgainBtn = document.getElementById('play-again-btn');
 const selectAgainBtn = document.getElementById('select-again-btn');
 const showResultsBtn = document.getElementById('show-results-btn');
+
 // Divs
 const part1 = document.getElementById('part-1');
 const part2 = document.getElementById('part-2');
@@ -18,7 +19,7 @@ const part4a = document.getElementById('part-4a');
 const part4b = document.getElementById('part-4b');
 const part5 = document.getElementById('part-5');
 
-
+// Selects
 const numOfLines = document.getElementById('num-of-lines');
 const numbersSelect = document.getElementById('numbers');
 const labelNumbers = document.getElementById('label-numbers');
