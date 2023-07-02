@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Memory of E App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box" id="part-1">
+            <h2>Part 1</h2>
+            <!-- <p>Content for the first div.</p> -->
+            <div>
+                <label for="letters" id="label-letters"> Select a groups</label>
+                <select name="letters" id="letters">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+            <button id="continue-1-btn">Continue 1</button>
+        </div>
+
+        <div class="box hidden" id="part-2">
+            <h2>Part 2</h2>
+            <!-- <p>Content for the second div.</p> -->
+
+            <div>
+                <label for="num-of-lines" id="num-of-liness"> Select a number</label>
+                <select id="num-of-lines">
+                    <option value="many">All of the Sets</option>
+                    <option value="1">Just 1 Set</option>
+                </select>
+
+            </div>
+            <div>
+                <label for="numbers" id="label-numbers" class="hidden"> Select a set</label>
+                <select id="numbers" class="hidden">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button id="continue-2-btn">Continue 2</button>
+        </div>
+
+        <div class="box hidden" id="part-3">
+            <h2>Part 3</h2>
+            <!-- <p>Content for the third div.</p> -->
+            <button id="continue-3-btn">Continue 3</button>
+        </div>
+
+        <div class="box hidden" id="part-4a">
+            <h2>Part 4a</h2>
+            <p>Content for the fourth div.</p>
+
+            <div>
+                Overall Timer <span id="overall-timer" class="timer">00:00</span>
+            </div>
+
+            <div class="row" id="row-1">
+                <input type="text" placeholder="Input 1">
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row" id="row-2">
+                <input type="text" placeholder="Input 2">
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row" id="row-3">
+                <input type="text" placeholder="Input 3">
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row" id="row-4">
+                <input type="text" placeholder="Input 4">
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="row" id="row-5">
+                <input type="text" placeholder="Input 5">
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
+                <span class="timer">00:00</span>
+            </div>
+
+            <button id="overall-stop-btn-a">Stop</button>
+            <button id="calculate-all-percentages-btn">Calculate All Percentages</button>
+            <div id="all-percentages-container"></div>
+        </div>
+
+
+
+        <div class="box hidden" id="part-4b">
+            <h2>Part 4b</h2>
+            <div id="selected-group-set"></div>
+
+            <div>
+                Overall Timer <span id="overall-timer" class="timer">00:00</span>
+            </div>
+
+            <div class="row" id="row-6">
+                <input type="text" placeholder="Input 6" id='single-input'>
+                <button class="start">Start</button>
+                <button class="stop">Stop</button>
+                <span class="timer" id="individual-timer">00:00:00</span>
+
+            </div>
+            <button id="overall-stop-btn-b">Stop</button>
+            <button id="calculate-single-percentage-btn">Calculate Percentage</button>
+
+            <div>
+                <p id="single-percentage"></p>
+            </div>
+
+        </div>
+
+
+
+        <div class="box hidden" id="part-5">
+            <h2>Part 5</h2>
+            <!-- <p>Content for the fifth div.</p> -->
+            <button id="play-again-btn">Play Again</button>
+            <button id="select-again-btn">Select Again</button>
+            <button id="show-results-btn">Show Results</button>
+
+            <div id="results" class="hidden">
+                <h2>Overall Time</h2>
+                <p id="overallTime">00:00:00</p>
+                <h2>Individual Times</h2>
+                <ul id="individualTimes"></ul>
+                <ul id="individualPercentage"></ul>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="app.js"></script> -->
+    <script src="utils.js"></script>
+    <script src="data.js"></script>
+    <script src="timers.js"></script>
+    <script src="events.js"></script>
+</body>
+
+
+
+
+</html>
