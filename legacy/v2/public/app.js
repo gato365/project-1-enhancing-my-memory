@@ -252,6 +252,9 @@ playAgainBtn.addEventListener('click', () => {
     startBtn.classList.remove('hidden');
 });
 
+
+
+
 // Add this event listener for the "Try Again" button
 tryAgainBtn.addEventListener('click', () => {
     // Reset the user input and timer
