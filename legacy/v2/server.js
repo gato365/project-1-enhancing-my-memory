@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./config/connection');
-const routes = require('./routes');
+const db = require('./server/config/connection');
+const routes = require('./server/routes');
 
 // Set up Express app
 const PORT = process.env.PORT || 3001;

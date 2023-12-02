@@ -38,8 +38,9 @@
 
       <label for="num-of-lines" id="num-of-liness"> Select a number</label>
       <select id="num-of-lines">
-        <option value="many">All of the Sets</option>
         <option value="1">Just 1 Set</option>
+        <option value="many">All of the Sets</option>
+        
         
       </select>
       <!-- Option for 1 gives numbers -->
@@ -57,18 +58,33 @@
       </select>
 
       <br>
-      
+       <button id="continue-again-btn" >Continue Again</button>
     </div>
-    <button id="save-btn" >Save</button>
+     
+
 
     <div class="timer-section hidden">
-      <p id="timer">0:00</p>
-      <input type="text" id="user-input" placeholder="Enter what you remember" class="hidden" autocomplete="off">
-      <div id="current-entered" class="hidden"></div>
-      <button id="start-btn">Start Test</button>
-      <div id = "selected-info" class="hidden"></div>
+      
+      <input type="text" id="user-input" placeholder="Enter what you remember" class="hidden" autocomplete="off" size="60">
+
+       <p id="timer">0:00</p>
+
+      <div id="current-entered" class="hidden">
+
+        
+      </div>
+      
+
+      <button id="start-btn" >Start Memory Test</button>
+      <div id = "selected-info" class="hidden">
+       
+      </div>
+     
       <button id="stop-btn" class="hidden">Stop</button>
     </div>
+
+
+
     <div class="stats-section hidden">
       <div class="button-group">
         <button id="play-again-btn" class="hidden">Enter New String</button>

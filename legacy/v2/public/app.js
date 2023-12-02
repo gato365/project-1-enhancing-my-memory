@@ -70,7 +70,7 @@ async function loadJSON(url) {
 
 
 
-const saveBtn = document.getElementById('save-btn');
+const continueAgainBtn = document.getElementById('continue-again-btn');
 const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const userInput = document.getElementById('user-input');
@@ -128,7 +128,7 @@ numOfLinesSelect.addEventListener('change', (event) => {
     }
 });
 
-saveBtn.addEventListener('click', async () => {
+continueAgainBtn.addEventListener('click', async () => {
     
     localStorage.setItem('selectedLetters', letters.value);
     localStorage.setItem('selectedNumbers', numbers.value);
